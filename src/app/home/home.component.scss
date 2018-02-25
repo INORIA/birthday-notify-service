@@ -9,6 +9,7 @@
 
   & .head {
     margin-top: 0;
+    color: $color-text;
   }
 }
 
@@ -27,6 +28,13 @@
     overflow: hidden;
     background-size: cover;
     background-position: top center;
+    transition: 0.2s;
+  }
+
+  .character-item:hover {
+    box-shadow:#ababab 0px 10px 20px 0px;
+    transform:translatey(-3px);
+    cursor:pointer;
   }
 
   .character-info {
