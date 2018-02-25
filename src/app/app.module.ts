@@ -11,12 +11,14 @@ import { MatButtonModule, MatCheckboxModule, MatToolbarModule, MatCardModule } f
 import { MatIconModule } from '@angular/material/icon';
 import { BackImgDirective } from './back-img.directive';
 import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BackImgDirective,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
