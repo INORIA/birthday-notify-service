@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
@@ -13,6 +14,14 @@ import { BackImgDirective } from './back-img.directive';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
+
+const appRoutes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    component: HomeComponent
+  }
+];
 
 @NgModule({
   declarations: [
@@ -34,6 +43,10 @@ import { HomeComponent } from './home/home.component';
     MatIconModule,
     MatToolbarModule,
     MatCardModule,
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true }
+    ),
   ],
   providers: [],
   bootstrap: [AppComponent]
