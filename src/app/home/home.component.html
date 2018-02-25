@@ -1,0 +1,27 @@
+<section class="top-section">
+  <h1 class="head">headline</h1>
+  <div class="character-list">
+      <mat-card class="character-item" *ngFor="let character of characters | async" [appBackImg]="character.image">
+          <div class="character-info">
+            <span class="character-name">{{ character.name }}</span>
+          </div>
+        </mat-card>
+  </div>
+</section>
+
+<section class="top-section">
+  <h1 class="head">headline 2</h1>
+  <div>
+    コンテンツ
+  </div>
+</section>
+
+<!-- <div *ngIf="afAuth.authState | async as user; else showLogin">
+  <h1>Hello {{ user.displayName }}!</h1>
+  <button mat-raised-button color="warn" (click)="logout()">Logout</button>
+</div> -->
+
+<!-- <ng-template #showLogin>
+  <p>Please login.</p>
+  <button mat-raised-button color="primary" (click)="login()">Login with Google</button>
+</ng-template> -->
