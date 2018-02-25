@@ -1,5 +1,7 @@
 @import "src/variables.scss";
 
+$horizontal-items: 4;
+
 .top-section {
   width: 100%;
   max-width: $content-max;
@@ -22,8 +24,8 @@
 
   .character-item {
     position: relative;
-    width: 23%;
-    margin: 0 1%;
+    width: calc(100% / #{$horizontal-items} - 20px);
+    margin: 0 10px;
     height: 300px;
     overflow: hidden;
     background-size: cover;
