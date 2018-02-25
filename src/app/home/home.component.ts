@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
 
@@ -11,10 +11,18 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class HomeComponent implements OnInit {
 
+  private characterCollection: AngularFirestoreCollection<any>;
   characters: Observable<any[]>;
 
   constructor(db: AngularFirestore, public afAuth: AngularFireAuth) {
-    this.characters = db.collection('characters').valueChanges();
+    this.characterCollection = db.collection('characters');
+    this.characters = this.characterCollection.snapshotChanges().map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data();
+        const _id = a.payload.doc.id;
+        return { _id, ...data };
+      });
+    });;
    }
 
   ngOnInit() {
@@ -36,6 +44,10 @@ export class HomeComponent implements OnInit {
 
   logout() {
     this.afAuth.auth.signOut();
+  }
+
+  log(val) {
+    console.log(val);
   }
 
 }
