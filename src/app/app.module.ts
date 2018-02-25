@@ -10,11 +10,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatToolbarModule, MatCardModule } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { BackImgDirective } from './back-img.directive';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BackImgDirective
+    BackImgDirective,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

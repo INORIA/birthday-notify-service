@@ -1,18 +1,20 @@
-<div class="hero-wrapper">
-  <div class="head-message">
-      <h1 class="mat-display-1 headline">Birthday Notification</h1>
-      <h3 class="subheading-2 subheading">君は生涯よくこの授業院というののためを思うたです。いくら今日を中止ようも至極この相違ででだけをなってみるなにもふりよしないですて、そうにはしでならざるなけれ。世の中にありですのはきっと時間を同時になけれでない。</h3>
-  </div>
-</div>
+<app-header></app-header>
 
 <section class="top-section">
-  <h1 class="head">おすすめ</h1>
+  <h1 class="head">headline</h1>
   <div class="character-list">
       <mat-card class="character-item" *ngFor="let character of characters | async" [appBackImg]="character.image">
           <div class="character-info">
             <span class="character-name">{{ character.name }}</span>
           </div>
         </mat-card>
+  </div>
+</section>
+
+<section class="top-section">
+  <h1 class="head">headline 2</h1>
+  <div>
+    コンテンツ
   </div>
 </section>
 
