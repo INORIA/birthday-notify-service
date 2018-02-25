@@ -14,12 +14,16 @@ import { BackImgDirective } from './back-img.directive';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
+import { CharacterComponent } from './character/character.component';
 
 const appRoutes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
     component: HomeComponent
+  },
+  {
+    path: 'character/:name',
+    component: CharacterComponent
   }
 ];
 
@@ -29,7 +33,8 @@ const appRoutes: Routes = [
     BackImgDirective,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    CharacterComponent
   ],
   imports: [
     BrowserModule,
