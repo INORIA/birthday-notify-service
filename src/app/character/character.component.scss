@@ -1,5 +1,95 @@
+@import "src/variables";
+
+main {
+  min-height: calc(100% - #{$height-footer});
+}
+
 .hero {
+  position: relative;
   width: 100%;
-  height: 400px;
-  background-color: #000;
+  height: 500px;
+  background-color: #fff;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+.blurred {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: blur(5px);
+  background-position: top center;
+  background-size: cover;
+  transform: scale(1.1);
+}
+
+
+.character {
+  position: absolute;
+  top: 40%;
+  left: 0;
+  right: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  max-width: $content-max;
+  margin: 0 auto;
+
+  .image {
+    width: 400px;
+    height: 500px;
+    text-indent: -500px;
+    overflow: hidden;
+    background-position: top center;
+    background-size: cover;
+  }
+
+  .description {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 4rem;
+  }
+
+  .main {
+    width: 100%;
+    color: $color-text-light;
+    margin-top: 4rem;
+    list-style: none;
+    padding: 0;
+
+    .name {
+      font-size: 2rem;
+    }
+
+    .ruby {
+      letter-spacing: 2px;
+    }
+
+    .birthday {
+      font-size: 2rem;
+      margin-top: 1rem;
+    }
+  }
+
+  .sub {
+    width: 100%;
+    margin-bottom: 4rem;
+  }
 }

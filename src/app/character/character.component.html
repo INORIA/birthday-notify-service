@@ -1,5 +1,23 @@
-<section class="hero"></section>
+<main *ngIf="character | async as character">
+  <section class="hero">
+    <div class="overlay">
+      <div class="blurred" [appBackImg]="character.image"></div>
+    </div>
 
-<p>
-  character works!
-</p>
+    <dl class="character">
+      <dt>
+        <div class="image" [appBackImg]="character.image">{{ character.name }}</div>
+      </dt>
+      <dd class="description">
+        <ul class="main">
+          <li class="name">{{ character.name }}</li>
+          <li class="ruby">{{ character.ruby }}</li>
+          <li class="birthday">{{ character.birthday_month }}月{{ character.birthday_date }}日</li>
+        </ul>
+        <div class="sub">
+          <!-- 何かあればコメント -->
+        </div>
+      </dd>
+    </dl>
+  </section>
+</main>

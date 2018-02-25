@@ -22,7 +22,7 @@ const appRoutes: Routes = [
     component: HomeComponent
   },
   {
-    path: ':name',
+    path: ':id',
     component: CharacterComponent
   }
 ];
