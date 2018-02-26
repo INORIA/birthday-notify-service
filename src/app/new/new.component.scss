@@ -1,0 +1,152 @@
+@import "src/variables";
+
+main {
+  min-height: 800px;
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  background-color: #fff;
+  border-top: 1px solid transparent;
+  margin-top: -1px;
+}
+
+.headline {
+  margin: 70px auto 0 auto;
+  border-top: solid 1rem transparent;
+  max-width: $content-max;
+  font-size: 2rem;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+}
+
+.blurred {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: blur(5px);
+  background-position: top center;
+  background-size: cover;
+  transform: scale(1.1);
+}
+
+
+.character {
+  position: absolute;
+  top: 40%;
+  left: 0;
+  right: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  max-width: $content-max;
+  margin: 0 auto;
+
+  .image {
+    width: 400px;
+    height: 500px;
+    overflow: hidden;
+    background-position: top center;
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+
+    input[type="file"] {
+      display: none;
+    }
+  }
+
+  .image-input {
+    display: block;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > * {
+      font-size: 100px;
+      width: 100px;
+      height: 100px;
+      color: $color-text-light;
+    }
+  }
+
+  .description {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 4rem;
+    width: 80%;
+  }
+
+  .main {
+    width: 100%;
+    color: $color-text-light;
+    margin-top: 0;
+    list-style: none;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+
+    .input {
+      width: 100%;
+    }
+
+    .name {
+      font-size: 2rem;
+    }
+
+    .ruby {
+      letter-spacing: 2px;
+    }
+
+    .birthday {
+      display: flex;
+      font-size: 2rem;
+      margin-top: 1rem;
+
+      .separator {
+        display: block;
+        padding: 0.4375em 1em;
+        border-top: 0.84375em solid transparent;
+      }
+    }
+  }
+
+  .sub {
+    width: 100%;
+    margin-bottom: 4rem;
+  }
+}
+
+
+// override material input styles
+
+::ng-deep .default-theme {
+  .mat-input-underline {
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+
+  .mat-input-placeholder {
+    color:  rgba(255, 255, 255, 0.7);
+  }
+}

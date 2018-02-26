@@ -8,18 +8,29 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatToolbarModule, MatCardModule } from '@angular/material';
+import {
+  MatButtonModule,
+  MatCheckboxModule,
+  MatToolbarModule,
+  MatCardModule,
+  MatInputModule
+} from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { BackImgDirective } from './back-img.directive';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { CharacterComponent } from './character/character.component';
+import { NewComponent } from './new/new.component';
 
 const appRoutes: Routes = [
   {
     path: '',
     component: HomeComponent
+  },
+  {
+    path: 'new',
+    component: NewComponent,
   },
   {
     path: ':id',
@@ -34,7 +45,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    CharacterComponent
+    CharacterComponent,
+    NewComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +60,7 @@ const appRoutes: Routes = [
     MatIconModule,
     MatToolbarModule,
     MatCardModule,
+    MatInputModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true }

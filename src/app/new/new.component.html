@@ -1,0 +1,49 @@
+<main>
+  <section class="hero">
+
+    <h1 class="headline">キャラクター新規登録</h1>
+
+    <form action="">
+      <div class="overlay">
+        <div class="blurred"></div>
+      </div>
+
+      <dl class="character">
+        <dt>
+          <div class="image">
+            <label class="image-input" for="character-image">
+              <mat-icon>file_upload</mat-icon>
+            </label>
+            <input id="character-image" type="file">
+          </div>
+        </dt>
+        <dd class="description">
+          <ul class="main">
+            <li class="name">
+              <mat-form-field class="input">
+                <input type="text" matInput placeholder="姓 名">
+              </mat-form-field>
+            </li>
+            <li class="ruby">
+              <mat-form-field class="input">
+                <input type="text" matInput placeholder="ふりがな">
+              </mat-form-field>
+            </li>
+            <li class="birthday">
+              <mat-form-field class="input">
+                <input type="text" matInput placeholder="月">
+              </mat-form-field>
+              <span class="separator">/</span>
+              <mat-form-field class="input">
+                <input type="text" matInput placeholder="日">
+              </mat-form-field>
+            </li>
+          </ul>
+          <div class="sub">
+            <!-- 何かあればコメント -->
+          </div>
+        </dd>
+      </dl>
+    </form>
+  </section>
+</main>
