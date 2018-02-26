@@ -49,18 +49,14 @@ header {
     padding: 0 2em;
     border-left: solid 1px rgba(255, 255, 255, 0.4);
     transition: background-color .4s;
+    color: $color-text-light;
   }
 
-  > *:hover {
+  > a:hover {
     background-color: $color-primary;
   }
 
   a {
     text-decoration: none;
-    color: $color-text-light;
   }
 }
-
-
-
-

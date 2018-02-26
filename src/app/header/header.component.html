@@ -3,9 +3,21 @@
     <div class="logo">
       <a href="">BN</a>
     </div>
-    <div class="actions">
-      <a href="">LOGIN</a>
-      <a href="">ユーザー登録</a>
+    <div class="actions" *ngIf="afAuth.authState | async as user; else showLogin">
+      <div>Logged In</div>
+      <a href="" (click)="logout($event)">LOGOUT</a>
     </div>
   </div>
 </header>
+
+<!-- <div *ngIf="afAuth.authState | async as user; else showLogin">
+  <h1>Hello {{ user.displayName }}!</h1>
+  <button mat-raised-button color="warn" (click)="logout()">Logout</button>
+</div> -->
+
+<ng-template #showLogin>
+  <div class="actions">
+    <a href="" (click)="login($event)">LOGIN</a>
+    <a href="">ユーザー登録</a>
+  </div>
+</ng-template>

@@ -28,24 +28,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  login() {
-    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(result => {
-      console.log(result);
-      firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
-        // Send token to your backend via HTTPS
-        // ...
-        console.log(idToken);
-      }).catch(function(error) {
-        // Handle error
-      });
-    });
-
-  }
-
-  logout() {
-    this.afAuth.auth.signOut();
-  }
-
   log(val) {
     console.log(val);
   }
