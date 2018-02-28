@@ -10,12 +10,22 @@
 
       <dl class="character">
         <dt>
-          <div class="image">
+          <div class="image" *ngIf="!preview; else imagePreview">
             <label class="image-input" for="character-image">
               <mat-icon>file_upload</mat-icon>
             </label>
-            <input id="character-image" type="file">
+            <input id="character-image" type="file" (change)="handleFileInput($event.target.files)">
           </div>
+
+          <ng-template #imagePreview>
+            <div class="image" [appBackImg]="preview">
+              <label class="image-input preview" for="character-image">
+                  <mat-icon>file_upload</mat-icon>
+                </label>
+                <input id="character-image" type="file" (change)="handleFileInput($event.target.files)">
+            </div>
+          </ng-template>
+
         </dt>
         <dd class="description">
           <ul class="main">
@@ -47,3 +57,4 @@
     </form>
   </section>
 </main>
+

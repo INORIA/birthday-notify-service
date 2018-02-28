@@ -7,9 +7,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewComponent implements OnInit {
 
+  preview: string;
+  fileToUpload: File;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  handleFileInput(files: FileList) {
+    const fileItem = files.item(0);
+    this.fileToUpload = fileItem;
+
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+      this.preview = reader.result;
+    });
+    reader.readAsDataURL(this.fileToUpload);
   }
 
   onSubmit(e) {
