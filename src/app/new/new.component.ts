@@ -12,4 +12,8 @@ export class NewComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSubmit(e) {
+    e.preventDefault();
+  }
+
 }
