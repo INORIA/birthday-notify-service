@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireStorage } from 'angularfire2/storage';
+import { Observable } from 'rxjs/Observable';
+import { UploadTaskSnapshot } from '@firebase/storage-types';
 
 @Component({
   selector: 'app-new',
@@ -10,7 +13,10 @@ export class NewComponent implements OnInit {
   preview: string;
   fileToUpload: File;
 
-  constructor() { }
+  uploadPercent: Observable<number>;
+  downloadURL: Observable<string>;
+
+  constructor(private storage: AngularFireStorage) { }
 
   ngOnInit() {
   }
@@ -28,6 +34,20 @@ export class NewComponent implements OnInit {
 
   onSubmit(e) {
     e.preventDefault();
+
+    const task = this.storage.upload(`characters/${this.fileToUpload.name}`, this.fileToUpload);
+    task.snapshotChanges()
+      .subscribe(
+        (e: UploadTaskSnapshot) => {},
+        (error: Error) => {
+          alert('Error occurred while uploading the image. \n' + error.message);
+        },
+        () => {
+          console.log('Completed');
+        }
+      );
+    this.uploadPercent = task.percentageChanges();
+    this.downloadURL = task.downloadURL();
   }
 
 }
