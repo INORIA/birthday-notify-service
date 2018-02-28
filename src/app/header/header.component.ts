@@ -23,7 +23,6 @@ export class HeaderComponent implements OnInit {
       firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
         // Send token to your backend via HTTPS
         // ...
-        console.log(idToken);
       }).catch(function(error) {
         // Handle error
       });
