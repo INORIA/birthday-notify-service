@@ -8,8 +8,6 @@ export class BackImgDirective {
   constructor(private el: ElementRef) {}
 
   ngOnInit() {
-    console.log('init');
-    console.log(this.backgroundImage);
     this.el.nativeElement.style.backgroundImage = `url(${this.backgroundImage})`;
   }
 }
