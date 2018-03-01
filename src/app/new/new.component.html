@@ -20,32 +20,37 @@
           <ng-template #imagePreview>
             <div class="image" [appBackImg]="preview">
               <label class="image-input preview" for="character-image">
-                  <mat-icon>file_upload</mat-icon>
-                </label>
-                <input id="character-image" type="file" (change)="handleFileInput($event.target.files)">
+                <mat-icon>file_upload</mat-icon>
+              </label>
+              <input id="character-image" type="file" (change)="handleFileInput($event.target.files)">
             </div>
           </ng-template>
 
         </dt>
         <dd class="description">
           <ul class="main">
+            <li class="id">
+                <mat-form-field class="input">
+                  <input type="text" matInput placeholder="ID" (input)="handleIdInput($event.target.value)">
+                </mat-form-field>
+              </li>
             <li class="name">
               <mat-form-field class="input">
-                <input type="text" matInput placeholder="姓 名">
+                <input type="text" matInput placeholder="姓 名" (input)="handleNameInput($event.target.value)">
               </mat-form-field>
             </li>
             <li class="ruby">
               <mat-form-field class="input">
-                <input type="text" matInput placeholder="ふりがな">
+                <input type="text" matInput placeholder="ふりがな" (input)="handleRubyInput($event.target.value)">
               </mat-form-field>
             </li>
             <li class="birthday">
               <mat-form-field class="input">
-                <input type="text" matInput placeholder="月">
+                <input type="number" matInput placeholder="月" (input)="handleMonthInput($event.target.value)">
               </mat-form-field>
               <span class="separator">/</span>
               <mat-form-field class="input">
-                <input type="text" matInput placeholder="日">
+                <input type="number" matInput placeholder="日" (input)="handleDateInput($event.target.value)">
               </mat-form-field>
             </li>
           </ul>
