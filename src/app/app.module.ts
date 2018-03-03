@@ -16,6 +16,8 @@ import {
   MatInputModule
 } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
+import { FormsModule }   from '@angular/forms';
+
 import { BackImgDirective } from './back-img.directive';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -65,6 +67,7 @@ const appRoutes: Routes = [
       appRoutes,
       { enableTracing: true }
     ),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

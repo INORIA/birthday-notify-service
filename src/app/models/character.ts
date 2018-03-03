@@ -6,3 +6,16 @@ export interface ICharacter {
   birthday_month: number;
   birthday_date: number;
 }
+
+export class Character implements ICharacter {
+
+  id = '';
+  name = '';
+  ruby = '';
+  image = '';
+  birthday_month;
+  birthday_date;
+
+  constructor() {
+  }
+}

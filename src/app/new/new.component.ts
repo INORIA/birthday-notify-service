@@ -4,8 +4,9 @@ import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firesto
 import { Observable } from 'rxjs/Observable';
 import { UploadTaskSnapshot } from '@firebase/storage-types';
 
-import { ICharacter } from '../models/character';
+import { ICharacter, Character } from '../models/character';
 import { DocumentReference } from '@firebase/firestore-types';
+
 
 @Component({
   selector: 'app-new',
@@ -17,11 +18,7 @@ export class NewComponent implements OnInit {
   preview: string;
 
   // input field values
-  id: string;
-  name: string;
-  ruby: string;
-  month: number;
-  date: number;
+  model = new Character();
   fileToUpload: File;
 
   uploadPercent: Observable<number>;
@@ -30,26 +27,6 @@ export class NewComponent implements OnInit {
   constructor(private storage: AngularFireStorage, private afs: AngularFirestore) { }
 
   ngOnInit() {
-  }
-
-  handleIdInput(id: string) {
-    this.id = id;
-  }
-
-  handleNameInput(name: string) {
-    this.name = name;
-  }
-
-  handleRubyInput(ruby: string) {
-    this.ruby = ruby;
-  }
-
-  handleMonthInput(month: number) {
-    this.month = month;
-  }
-
-  handleDateInput(date: number) {
-    this.date = date;
   }
 
   handleFileInput(files: FileList) {
@@ -70,11 +47,11 @@ export class NewComponent implements OnInit {
       const downloadURL = await this.uploadFile();
 
       const ref = await this.postData({
-        id: this.id,
-        name: this.name,
-        ruby: this.ruby,
-        birthday_month: this.month,
-        birthday_date: this.date,
+        id: this.model.id,
+        name: this.model.name,
+        ruby: this.model.ruby,
+        birthday_month: this.model.birthday_month,
+        birthday_date: this.model.birthday_date,
         image: downloadURL,
       });
 

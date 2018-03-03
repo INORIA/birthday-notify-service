@@ -3,7 +3,7 @@
 
     <h1 class="headline">キャラクター新規登録</h1>
 
-    <form action="">
+    <form action="" #chaForm="ngForm">
       <div class="overlay">
         <div class="blurred"></div>
       </div>
@@ -14,7 +14,14 @@
             <label class="image-input" for="character-image">
               <mat-icon>file_upload</mat-icon>
             </label>
-            <input id="character-image" type="file" (change)="handleFileInput($event.target.files)">
+            <input
+              name="image"
+              id="character-image"
+              type="file"
+              required
+              [(ngModel)]="model.image"
+              #image="ngModel"
+              (change)="handleFileInput($event.target.files)">
           </div>
 
           <ng-template #imagePreview>
@@ -27,35 +34,69 @@
           </ng-template>
 
         </dt>
+
         <dd class="description">
           <ul class="main">
             <li class="id">
                 <mat-form-field class="input">
-                  <input type="text" matInput placeholder="ID" (input)="handleIdInput($event.target.value)">
+                  <input type="text"
+                    name="id"
+                    matInput
+                    placeholder="ID"
+                    required
+                    [(ngModel)]="model.id"
+                    #id="ngModel">
                 </mat-form-field>
+                <p [hidden]="id.valid || id.pristine">Id is invalid</p>
               </li>
             <li class="name">
               <mat-form-field class="input">
-                <input type="text" matInput placeholder="姓 名" (input)="handleNameInput($event.target.value)">
+                <input type="text"
+                  name="cname"
+                  matInput
+                  placeholder="姓 名"
+                  required
+                  [(ngModel)]="model.name"
+                  #name="ngModel">
               </mat-form-field>
+              <p [hidden]="name.valid || name.pristine"></p>
             </li>
             <li class="ruby">
               <mat-form-field class="input">
-                <input type="text" matInput placeholder="ふりがな" (input)="handleRubyInput($event.target.value)">
+                <input
+                  name="ruby"
+                  type="text"
+                  matInput
+                  placeholder="ふりがな"
+                  required
+                  [(ngModel)]="model.ruby"
+                  #ruby="ngModel">
               </mat-form-field>
             </li>
             <li class="birthday">
               <mat-form-field class="input">
-                <input type="number" matInput placeholder="月" (input)="handleMonthInput($event.target.value)">
+                <input type="number"
+                  name="birthday_month"
+                  matInput
+                  placeholder="月"
+                  [(ngModel)]="model.birthday_month"
+                  #birthdayMonth="ngModel">
               </mat-form-field>
               <span class="separator">/</span>
               <mat-form-field class="input">
-                <input type="number" matInput placeholder="日" (input)="handleDateInput($event.target.value)">
+                <input
+                  name="birthday_date"
+                  type="number"
+                  matInput
+                  placeholder="日"
+                  required
+                  [(ngModel)]="model.birthday_date"
+                  #birthdayDate="ngModel">
               </mat-form-field>
             </li>
           </ul>
           <div class="sub">
-            <button class="register-button" mat-raised-button color="primary" (click)="onSubmit($event)">登録</button>
+            <button type="submit" [disabled]="!chaForm.form.valid" class="register-button" mat-raised-button color="primary" (click)="onSubmit($event)">登録</button>
            </div>
         </dd>
       </dl>
