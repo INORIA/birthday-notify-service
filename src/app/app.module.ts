@@ -17,6 +17,7 @@ import {
 } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule }   from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { BackImgDirective } from './back-img.directive';
 import { HeaderComponent } from './header/header.component';
@@ -67,7 +68,8 @@ const appRoutes: Routes = [
       appRoutes,
       { enableTracing: true }
     ),
-    FormsModule
+    FormsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

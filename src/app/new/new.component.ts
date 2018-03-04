@@ -3,10 +3,12 @@ import { AngularFireStorage } from 'angularfire2/storage';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { UploadTaskSnapshot } from '@firebase/storage-types';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
+import { Router } from '@angular/router';
 
 import { ICharacter, Character } from '../models/character';
 import { DocumentReference } from '@firebase/firestore-types';
-
+import { FormStates } from '../enums/form-states';
 
 @Component({
   selector: 'app-new',
@@ -15,16 +17,22 @@ import { DocumentReference } from '@firebase/firestore-types';
 })
 export class NewComponent implements OnInit {
 
+  FormStates = FormStates;
   preview: string;
+  uploadPercent: Observable<number>;
+  downloadURL: Observable<string>;
+  formState = FormStates.WaitForSubmit;
 
   // input field values
   model = new Character();
   fileToUpload: File;
 
-  uploadPercent: Observable<number>;
-  downloadURL: Observable<string>;
-
-  constructor(private storage: AngularFireStorage, private afs: AngularFirestore) { }
+  constructor(
+    private storage: AngularFireStorage,
+    private afs: AngularFirestore,
+    private snackBar: MatSnackBar,
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
@@ -43,6 +51,9 @@ export class NewComponent implements OnInit {
   async onSubmit(e) {
     e.preventDefault();
 
+    // disable the submit button
+    this.formState = FormStates.Submitting;
+
     try {
       const downloadURL = await this.uploadFile();
 
@@ -55,8 +66,10 @@ export class NewComponent implements OnInit {
         image: downloadURL,
       });
 
-      console.log(ref);
+      this.formState = FormStates.Submitted;
+      this.router.navigate(['', this.model.id]);
     } catch (e) {
+      this.message(`${this.model.name} を作成できませんでした。`);
       console.log(e.message);
     }
   }
@@ -76,5 +89,11 @@ export class NewComponent implements OnInit {
 
   private postData(data: ICharacter): Promise<DocumentReference> {
     return this.afs.collection<ICharacter>('characters').add(data);
+  }
+
+  private message(message: string) {
+    const config = new MatSnackBarConfig();
+    config.duration = 2000;
+    this.snackBar.open(message, '', config);
   }
 }
