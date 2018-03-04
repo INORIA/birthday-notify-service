@@ -67,7 +67,9 @@ export class NewComponent implements OnInit {
       });
 
       this.formState = FormStates.Submitted;
-      this.router.navigate(['', this.model.id]);
+      this.router.navigate(['', this.model.id], {
+        queryParams: { new: true }
+      });
     } catch (e) {
       this.message(`${this.model.name} を作成できませんでした。`);
       console.log(e.message);
