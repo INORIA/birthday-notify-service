@@ -18,6 +18,7 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule }   from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { BackImgDirective } from './back-img.directive';
 import { HeaderComponent } from './header/header.component';
@@ -69,7 +70,8 @@ const appRoutes: Routes = [
       { enableTracing: true }
     ),
     FormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

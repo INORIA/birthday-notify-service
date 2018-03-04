@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
@@ -18,8 +18,8 @@ import { FormStates } from '../enums/form-states';
 export class NewComponent implements OnInit {
 
   FormStates = FormStates;
-  preview: string;
-  uploadPercent: Observable<number>;
+  uploadPercent: number = 0;
+  imageUploadPercent: Observable<number>;
   downloadURL: Observable<string>;
   formState = FormStates.WaitForSubmit;
 
@@ -37,13 +37,17 @@ export class NewComponent implements OnInit {
   ngOnInit() {
   }
 
-  handleFileInput(files: FileList) {
+  handleFileInput(files: FileList): void {
+    if (files.length === 0) {
+      this.model.image = '';
+      return
+    }
     const fileItem = files.item(0);
     this.fileToUpload = fileItem;
 
     const reader = new FileReader();
     reader.addEventListener('load', () => {
-      this.preview = reader.result;
+      this.model.image = reader.result;
     });
     reader.readAsDataURL(this.fileToUpload);
   }
@@ -66,10 +70,14 @@ export class NewComponent implements OnInit {
         image: downloadURL,
       });
 
+      this.uploadPercent = 100;
       this.formState = FormStates.Submitted;
-      this.router.navigate(['', this.model.id], {
-        queryParams: { new: true }
-      });
+
+      setTimeout(() => {
+        this.router.navigate(['', this.model.id], {
+          queryParams: { new: true }
+        });
+      }, 600);
     } catch (e) {
       this.message(`${this.model.name} を作成できませんでした。`);
       console.log(e.message);
@@ -84,7 +92,11 @@ export class NewComponent implements OnInit {
       }, (error: Error) => {
         reject(error);
       });
-      this.uploadPercent = task.percentageChanges();
+      task.percentageChanges().subscribe((c) => {
+        // Upload section ends 80%
+        this.uploadPercent = c / (100 + 25) * 100;
+      });
+      this.imageUploadPercent = task.percentageChanges();
       this.downloadURL = task.downloadURL();
     });
   }
