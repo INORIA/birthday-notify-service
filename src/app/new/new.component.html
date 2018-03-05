@@ -24,6 +24,7 @@
                 id="character-image"
                 type="file"
                 required
+                [disabled]="formState !== FormStates.WaitForSubmit"
                 (change)="handleFileInput($event.target.files)">
               <input
                 type="text"
@@ -50,7 +51,6 @@
                       [(ngModel)]="model.id"
                       #id="ngModel">
                   </mat-form-field>
-                  <p [hidden]="id.valid || id.pristine">Id is invalid</p>
                 </li>
               <li class="name">
                 <mat-form-field class="input">
@@ -59,10 +59,10 @@
                     matInput
                     placeholder="姓 名"
                     required
+                    [disabled]="formState !== FormStates.WaitForSubmit"
                     [(ngModel)]="model.name"
                     #name="ngModel">
                 </mat-form-field>
-                <p [hidden]="name.valid || name.pristine"></p>
               </li>
               <li class="ruby">
                 <mat-form-field class="input">
@@ -72,6 +72,7 @@
                     matInput
                     placeholder="ふりがな"
                     required
+                    [disabled]="formState !== FormStates.WaitForSubmit"
                     [(ngModel)]="model.ruby"
                     #ruby="ngModel">
                 </mat-form-field>
@@ -83,6 +84,7 @@
                     matInput
                     placeholder="月"
                     required
+                    [disabled]="formState !== FormStates.WaitForSubmit"
                     [(ngModel)]="model.birthday_month"
                     #birthdayMonth="ngModel">
                 </mat-form-field>
@@ -94,6 +96,7 @@
                     matInput
                     placeholder="日"
                     required
+                    [disabled]="formState !== FormStates.WaitForSubmit"
                     [(ngModel)]="model.birthday_date"
                     #birthdayDate="ngModel">
                 </mat-form-field>

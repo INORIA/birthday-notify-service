@@ -102,6 +102,10 @@ main {
         background-color: rgba(0, 0, 0, 0.5);
         opacity: 1;
       }
+      &.disabled:hover {
+        background-color: transparent;
+        opacity: 0;
+      }
     }
 
     > * {
