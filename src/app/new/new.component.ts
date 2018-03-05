@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { UploadTaskSnapshot } from '@firebase/storage-types';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
+import { Router } from '@angular/router';
 
-import { ICharacter } from '../models/character';
+import { ICharacter, Character } from '../models/character';
 import { DocumentReference } from '@firebase/firestore-types';
+import { FormStates } from '../enums/form-states';
 
 @Component({
   selector: 'app-new',
@@ -14,51 +17,37 @@ import { DocumentReference } from '@firebase/firestore-types';
 })
 export class NewComponent implements OnInit {
 
-  preview: string;
+  FormStates = FormStates;
+  uploadPercent: number = 0;
+  imageUploadPercent: Observable<number>;
+  downloadURL: Observable<string>;
+  formState = FormStates.WaitForSubmit;
 
   // input field values
-  id: string;
-  name: string;
-  ruby: string;
-  month: number;
-  date: number;
+  model = new Character();
   fileToUpload: File;
 
-  uploadPercent: Observable<number>;
-  downloadURL: Observable<string>;
-
-  constructor(private storage: AngularFireStorage, private afs: AngularFirestore) { }
+  constructor(
+    private storage: AngularFireStorage,
+    private afs: AngularFirestore,
+    private snackBar: MatSnackBar,
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
 
-  handleIdInput(id: string) {
-    this.id = id;
-  }
-
-  handleNameInput(name: string) {
-    this.name = name;
-  }
-
-  handleRubyInput(ruby: string) {
-    this.ruby = ruby;
-  }
-
-  handleMonthInput(month: number) {
-    this.month = month;
-  }
-
-  handleDateInput(date: number) {
-    this.date = date;
-  }
-
-  handleFileInput(files: FileList) {
+  handleFileInput(files: FileList): void {
+    if (files.length === 0) {
+      this.model.image = '';
+      return
+    }
     const fileItem = files.item(0);
     this.fileToUpload = fileItem;
 
     const reader = new FileReader();
     reader.addEventListener('load', () => {
-      this.preview = reader.result;
+      this.model.image = reader.result;
     });
     reader.readAsDataURL(this.fileToUpload);
   }
@@ -66,20 +55,31 @@ export class NewComponent implements OnInit {
   async onSubmit(e) {
     e.preventDefault();
 
+    // disable the submit button
+    this.formState = FormStates.Submitting;
+
     try {
       const downloadURL = await this.uploadFile();
 
       const ref = await this.postData({
-        id: this.id,
-        name: this.name,
-        ruby: this.ruby,
-        birthday_month: this.month,
-        birthday_date: this.date,
+        id: this.model.id,
+        name: this.model.name,
+        ruby: this.model.ruby,
+        birthday_month: this.model.birthday_month,
+        birthday_date: this.model.birthday_date,
         image: downloadURL,
       });
 
-      console.log(ref);
+      this.uploadPercent = 100;
+      this.formState = FormStates.Submitted;
+
+      setTimeout(() => {
+        this.router.navigate(['', this.model.id], {
+          queryParams: { new: true }
+        });
+      }, 600);
     } catch (e) {
+      this.message(`${this.model.name} を作成できませんでした。`);
       console.log(e.message);
     }
   }
@@ -92,12 +92,22 @@ export class NewComponent implements OnInit {
       }, (error: Error) => {
         reject(error);
       });
-      this.uploadPercent = task.percentageChanges();
+      task.percentageChanges().subscribe((c) => {
+        // Upload section ends 80%
+        this.uploadPercent = c / (100 + 25) * 100;
+      });
+      this.imageUploadPercent = task.percentageChanges();
       this.downloadURL = task.downloadURL();
     });
   }
 
   private postData(data: ICharacter): Promise<DocumentReference> {
     return this.afs.collection<ICharacter>('characters').add(data);
+  }
+
+  private message(message: string) {
+    const config = new MatSnackBarConfig();
+    config.duration = 2000;
+    this.snackBar.open(message, '', config);
   }
 }

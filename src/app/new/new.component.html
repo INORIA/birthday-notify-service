@@ -1,65 +1,137 @@
 <main>
   <section class="hero">
+    <div class="overlay">
+      <div class="blurred"></div>
+    </div>
 
     <h1 class="headline">キャラクター新規登録</h1>
+  </section>
 
-    <form action="">
-      <div class="overlay">
-        <div class="blurred"></div>
-      </div>
-
-      <dl class="character">
-        <dt>
-          <div class="image" *ngIf="!preview; else imagePreview">
-            <label class="image-input" for="character-image">
-              <mat-icon>file_upload</mat-icon>
-            </label>
-            <input id="character-image" type="file" (change)="handleFileInput($event.target.files)">
-          </div>
-
-          <ng-template #imagePreview>
-            <div class="image" [appBackImg]="preview">
-              <label class="image-input preview" for="character-image">
+  <section class="character-info">
+      <form action="" #chaForm="ngForm">
+        <dl class="character">
+          <dt>
+            <div class="image" [appBackImg]="model.image">
+              <label
+                class="image-input"
+                for="character-image"
+                [class.preview]="model.image"
+                [class.disabled]="formState !== FormStates.WaitForSubmit"
+              >
                 <mat-icon>file_upload</mat-icon>
               </label>
-              <input id="character-image" type="file" (change)="handleFileInput($event.target.files)">
+              <input
+                id="character-image"
+                type="file"
+                required
+                [disabled]="formState !== FormStates.WaitForSubmit"
+                (change)="handleFileInput($event.target.files)">
+              <input
+                type="text"
+                hidden
+                name="image"
+                required
+                [(ngModel)]="model.image"
+                #image="ngModel"
+              >
             </div>
-          </ng-template>
+          </dt>
 
-        </dt>
-        <dd class="description">
-          <ul class="main">
-            <li class="id">
+          <dd class="description">
+            <ul class="main">
+              <li class="id">
+                  <mat-form-field class="input">
+                    <input
+                      type="text"
+                      name="id"
+                      matInput
+                      placeholder="ID"
+                      required
+                      [disabled]="formState !== FormStates.WaitForSubmit"
+                      [(ngModel)]="model.id"
+                      #id="ngModel">
+                  </mat-form-field>
+                </li>
+              <li class="name">
                 <mat-form-field class="input">
-                  <input type="text" matInput placeholder="ID" (input)="handleIdInput($event.target.value)">
+                  <input type="text"
+                    name="cname"
+                    matInput
+                    placeholder="姓 名"
+                    required
+                    [disabled]="formState !== FormStates.WaitForSubmit"
+                    [(ngModel)]="model.name"
+                    #name="ngModel">
                 </mat-form-field>
               </li>
-            <li class="name">
-              <mat-form-field class="input">
-                <input type="text" matInput placeholder="姓 名" (input)="handleNameInput($event.target.value)">
-              </mat-form-field>
-            </li>
-            <li class="ruby">
-              <mat-form-field class="input">
-                <input type="text" matInput placeholder="ふりがな" (input)="handleRubyInput($event.target.value)">
-              </mat-form-field>
-            </li>
-            <li class="birthday">
-              <mat-form-field class="input">
-                <input type="number" matInput placeholder="月" (input)="handleMonthInput($event.target.value)">
-              </mat-form-field>
-              <span class="separator">/</span>
-              <mat-form-field class="input">
-                <input type="number" matInput placeholder="日" (input)="handleDateInput($event.target.value)">
-              </mat-form-field>
-            </li>
-          </ul>
-          <div class="sub">
-            <button class="register-button" mat-raised-button color="primary" (click)="onSubmit($event)">登録</button>
-           </div>
-        </dd>
-      </dl>
-    </form>
+              <li class="ruby">
+                <mat-form-field class="input">
+                  <input
+                    name="ruby"
+                    type="text"
+                    matInput
+                    placeholder="ふりがな"
+                    required
+                    [disabled]="formState !== FormStates.WaitForSubmit"
+                    [(ngModel)]="model.ruby"
+                    #ruby="ngModel">
+                </mat-form-field>
+              </li>
+              <li class="birthday">
+                <mat-form-field class="input">
+                  <input type="number"
+                    name="birthday_month"
+                    matInput
+                    placeholder="月"
+                    required
+                    [disabled]="formState !== FormStates.WaitForSubmit"
+                    [(ngModel)]="model.birthday_month"
+                    #birthdayMonth="ngModel">
+                </mat-form-field>
+                <span class="separator">/</span>
+                <mat-form-field class="input">
+                  <input
+                    name="birthday_date"
+                    type="number"
+                    matInput
+                    placeholder="日"
+                    required
+                    [disabled]="formState !== FormStates.WaitForSubmit"
+                    [(ngModel)]="model.birthday_date"
+                    #birthdayDate="ngModel">
+                </mat-form-field>
+              </li>
+            </ul>
+            <div class="sub">
+              <button
+                type="submit"
+                class="register-button"
+                mat-raised-button
+                color="primary"
+                [disabled]="!(chaForm.form.valid && formState === FormStates.WaitForSubmit)"
+                (click)="onSubmit($event)"
+              >
+                <mat-spinner
+                  diameter="40"
+                  class="loader"
+                  color="primary"
+                  *ngIf="formState === FormStates.Submitting && uploadPercent === 0"
+                ></mat-spinner>
+                <mat-progress-spinner
+                  diameter="40"
+                  class="loader"
+                  color="primary"
+                  mode="determinate"
+                  [value]="uploadPercent"
+                  *ngIf="formState === FormStates.Submitting || formState === FormStates.Submitted"
+                ></mat-progress-spinner>
+                登録
+              </button>
+
+             </div>
+          </dd>
+        </dl>
+      </form>
   </section>
 </main>
 

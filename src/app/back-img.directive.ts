@@ -1,13 +1,13 @@
-import { Directive, ElementRef, Input } from '@angular/core';
+import { Directive, Input, HostBinding } from '@angular/core';
 
 @Directive({
   selector: '[appBackImg]'
 })
 export class BackImgDirective {
-  @Input('appBackImg') backgroundImage: string;
-  constructor(private el: ElementRef) {}
-
-  ngOnInit() {
-    this.el.nativeElement.style.backgroundImage = `url(${this.backgroundImage})`;
-  }
+  @Input('appBackImg') set setImage(image) {
+    if (image) {
+      this.image = `url(${image})`;
+    }
+  };
+  @HostBinding('style.backgroundImage') image = '';
 }
