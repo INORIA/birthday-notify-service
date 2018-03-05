@@ -19,6 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule }   from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { BackImgDirective } from './back-img.directive';
 import { HeaderComponent } from './header/header.component';
@@ -26,6 +27,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { CharacterComponent } from './character/character.component';
 import { NewComponent } from './new/new.component';
+import { LoginViewComponent } from './login-view/login-view.component';
 
 const appRoutes: Routes = [
   {
@@ -50,7 +52,8 @@ const appRoutes: Routes = [
     FooterComponent,
     HomeComponent,
     CharacterComponent,
-    NewComponent
+    NewComponent,
+    LoginViewComponent
   ],
   imports: [
     BrowserModule,
@@ -71,9 +74,11 @@ const appRoutes: Routes = [
     ),
     FormsModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDialogModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [LoginViewComponent]
 })
 export class AppModule { }
