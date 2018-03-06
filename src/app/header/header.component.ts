@@ -12,7 +12,10 @@ import { LoginViewComponent } from '../login-view/login-view.component';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public afAuth: AngularFireAuth, private dialog: MatDialog) { }
+  constructor(
+    public afAuth: AngularFireAuth,
+    private dialog: MatDialog
+  ) { }
 
   ngOnInit() {
   }
