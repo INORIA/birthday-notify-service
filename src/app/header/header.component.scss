@@ -60,3 +60,15 @@ header {
     text-decoration: none;
   }
 }
+
+.button {
+  &:hover {
+    background-color: $color-primary;
+  }
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  font-size: 40px;
+}

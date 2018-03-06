@@ -4,11 +4,21 @@
       <a href="">BN</a>
     </div>
     <div class="actions" *ngIf="afAuth.authState | async as user; else showLogin">
-      <div>Logged In</div>
-      <a href="" (click)="logout($event)">LOGOUT</a>
+      <button class="button" mat-button [matMenuTriggerFor]="userMenu">
+          <mat-icon class="icon">account_circle</mat-icon>
+      </button>
     </div>
   </div>
 </header>
+
+<mat-menu #userMenu="matMenu" xPosition="before" yPosition="below" [overlapTrigger]=false>
+  <button mat-menu-item>
+    設定
+  </button>
+  <button mat-menu-item (click)="logout($event)">
+    LOGOUT
+  </button>
+</mat-menu>
 
 <!-- <div *ngIf="afAuth.authState | async as user; else showLogin">
   <h1>Hello {{ user.displayName }}!</h1>

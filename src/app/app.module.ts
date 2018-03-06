@@ -20,6 +20,7 @@ import { FormsModule }   from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { BackImgDirective } from './back-img.directive';
 import { HeaderComponent } from './header/header.component';
@@ -75,7 +76,8 @@ const appRoutes: Routes = [
     FormsModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent],
