@@ -12,6 +12,7 @@
       </dt>
       <dd class="description">
         <ul class="main">
+          <li class="work" *ngIf="work | async as work">{{ work.name }}</li>
           <li class="name">{{ character.name }}</li>
           <li class="ruby">{{ character.ruby }}</li>
           <li class="birthday">{{ character.birthday_month }}月{{ character.birthday_date }}日</li>

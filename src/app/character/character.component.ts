@@ -5,6 +5,9 @@ import { MatSnackBar } from '@angular/material';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import 'rxjs/add/operator/mergeMap';
 
+import { IWork } from '../models/work';
+import { ICharacter } from '../models/character';
+
 @Component({
   selector: 'app-character',
   templateUrl: './character.component.html',
@@ -13,6 +16,7 @@ import 'rxjs/add/operator/mergeMap';
 export class CharacterComponent implements OnInit {
   id: string;
   character: Observable<any>;
+  work: Observable<IWork>;
 
   constructor(
     private route: ActivatedRoute,
@@ -45,6 +49,16 @@ export class CharacterComponent implements OnInit {
       )
       .valueChanges()
       .flatMap(result => result);
+
+    this.character.subscribe((character: ICharacter) => {
+      if (character.work) {
+        this.work = this.afs.doc<IWork>(`works/${character.work.id}`).valueChanges();
+      }
+    });
+  }
+
+  log(data) {
+    // console.log(data);
   }
 
 }

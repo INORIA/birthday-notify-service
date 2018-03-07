@@ -1,3 +1,5 @@
+import { DocumentReference } from "@firebase/firestore-types";
+
 export interface ICharacter {
   id: string;
   name: string;
@@ -5,6 +7,7 @@ export interface ICharacter {
   image: string;
   birthday_month: number;
   birthday_date: number;
+  work: DocumentReference;
 }
 
 export class Character implements ICharacter {
@@ -15,6 +18,7 @@ export class Character implements ICharacter {
   image = '';
   birthday_month;
   birthday_date;
+  work;
 
   constructor() {
   }
