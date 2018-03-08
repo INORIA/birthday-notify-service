@@ -7,6 +7,7 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import { Router } from '@angular/router';
 
 import { ICharacter, Character } from '../models/character';
+import { IWork } from '../models/work';
 import { DocumentReference } from '@firebase/firestore-types';
 import { FormStates } from '../enums/form-states';
 
@@ -22,6 +23,7 @@ export class NewComponent implements OnInit {
   imageUploadPercent: Observable<number>;
   downloadURL: Observable<string>;
   formState = FormStates.WaitForSubmit;
+  works: Observable<IWork[]>;
 
   // input field values
   model = new Character();
@@ -32,7 +34,10 @@ export class NewComponent implements OnInit {
     private afs: AngularFirestore,
     private snackBar: MatSnackBar,
     private router: Router
-  ) { }
+  ) {
+    const worksCollection = afs.collection<IWork>('works');
+    this.works = worksCollection.valueChanges();
+  }
 
   ngOnInit() {
   }
@@ -68,6 +73,7 @@ export class NewComponent implements OnInit {
         birthday_month: this.model.birthday_month,
         birthday_date: this.model.birthday_date,
         image: downloadURL,
+        work: null,
       });
 
       this.uploadPercent = 100;

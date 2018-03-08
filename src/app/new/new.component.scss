@@ -137,17 +137,28 @@ main {
       width: 100%;
     }
 
+    .id {
+      font-size: 1.2rem;
+    }
+
+    .work {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+
     .name {
-      font-size: 2rem;
+      font-size: 1.2rem;
+      margin-top: 1rem;
     }
 
     .ruby {
+      font-size: 1.2rem;
       letter-spacing: 2px;
     }
 
     .birthday {
       display: flex;
-      font-size: 2rem;
+      font-size: 1.2rem;
       margin-top: 1rem;
 
       .separator {
@@ -184,7 +195,7 @@ main {
     background-color: rgba(255, 255, 255, 0.7);
   }
 
-  .mat-input-placeholder {
+  .mat-input-placeholder, .mat-select-value, .mat-select-placeholder, .mat-select-arrow {
     color:  rgba(255, 255, 255, 0.7);
   }
 }
