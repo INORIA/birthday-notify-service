@@ -64,7 +64,10 @@
                   #work="ngModel"
                 >
                   <mat-option value="">作品名を選択</mat-option>
-                  <mat-option *ngFor="let work of works | async" [value]="work.name">
+                  <mat-option
+                    *ngFor="let work of works | async"
+                    [value]="work.id"
+                  >
                     {{ work.name }}
                   </mat-option>
                 </mat-select>
