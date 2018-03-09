@@ -5,9 +5,11 @@ import { Observable } from 'rxjs/Observable';
 import { UploadTaskSnapshot } from '@firebase/storage-types';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import { Router } from '@angular/router';
+import * as firebase from 'firebase';
+import { DocumentReference } from "@firebase/firestore-types";
 
 import { ICharacter, Character } from '../models/character';
-import { DocumentReference } from '@firebase/firestore-types';
+import { IWork } from '../models/work';
 import { FormStates } from '../enums/form-states';
 
 @Component({
@@ -22,6 +24,7 @@ export class NewComponent implements OnInit {
   imageUploadPercent: Observable<number>;
   downloadURL: Observable<string>;
   formState = FormStates.WaitForSubmit;
+  works: Observable<IWork[]>;
 
   // input field values
   model = new Character();
@@ -32,7 +35,16 @@ export class NewComponent implements OnInit {
     private afs: AngularFirestore,
     private snackBar: MatSnackBar,
     private router: Router
-  ) { }
+  ) {
+    const worksCollection = afs.collection<IWork>('works');
+    this.works = worksCollection.snapshotChanges().map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data() as IWork;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      })
+    });
+  }
 
   ngOnInit() {
   }
@@ -68,6 +80,7 @@ export class NewComponent implements OnInit {
         birthday_month: this.model.birthday_month,
         birthday_date: this.model.birthday_date,
         image: downloadURL,
+        work: firebase.firestore().doc(`/works/${this.model.work}`),
       });
 
       this.uploadPercent = 100;
