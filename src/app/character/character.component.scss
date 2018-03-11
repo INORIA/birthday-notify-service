@@ -51,7 +51,6 @@ main {
   transform: scale(1.1);
 }
 
-
 .character {
   top: 40%;
   left: 0;
@@ -61,50 +60,53 @@ main {
   height: 100%;
   max-width: $content-max;
   margin: 0 auto;
+}
 
-  .image {
-    width: 400px;
-    height: 500px;
-    text-indent: -500px;
-    overflow: hidden;
-    background-position: top center;
-    background-size: cover;
+.image {
+  width: 400px;
+  height: 500px;
+  text-indent: -500px;
+  overflow: hidden;
+  background-position: top center;
+  background-size: cover;
+}
+
+.description {
+  width: 100%;
+  margin-left: 4rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.main {
+  width: 100%;
+  color: $color-text-light;
+  margin-top: 4rem;
+  list-style: none;
+  padding: 0;
+
+  .work {
+    margin-bottom: 1rem;
   }
 
-  .description {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-left: 4rem;
+  .name {
+    font-size: 2rem;
   }
 
-  .main {
-    width: 100%;
-    color: $color-text-light;
-    margin-top: 4rem;
-    list-style: none;
-    padding: 0;
-
-    .work {
-      margin-bottom: 1rem;
-    }
-
-    .name {
-      font-size: 2rem;
-    }
-
-    .ruby {
-      letter-spacing: 2px;
-    }
-
-    .birthday {
-      font-size: 2rem;
-      margin-top: 1rem;
-    }
+  .ruby {
+    letter-spacing: 2px;
   }
 
-  .sub {
-    width: 100%;
-    margin-bottom: 4rem;
+  .birthday {
+    font-size: 2rem;
+    margin-top: 1rem;
   }
+}
+
+.sub {
+  width: 100%;
+  margin-bottom: 4rem;
 }

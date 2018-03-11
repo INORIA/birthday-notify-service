@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFireAuth } from 'angularfire2/auth';
 import 'rxjs/add/operator/mergeMap';
 
 import { IWork } from '../models/work';
@@ -19,6 +20,7 @@ export class CharacterComponent implements OnInit {
   work: Observable<IWork>;
 
   constructor(
+    public afAuth: AngularFireAuth,
     private route: ActivatedRoute,
     private router: Router,
     private snackBar: MatSnackBar,
