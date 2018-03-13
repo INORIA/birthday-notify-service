@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { DocumentReference } from "@firebase/firestore-types";
 
-import { CloudFunctionsService, Functions } from '../services/cloud-functions.service';
 import { ICharacter, Character } from '../models/character';
 import { IWork } from '../models/work';
 import { FormStates } from '../enums/form-states';
@@ -32,7 +31,6 @@ export class NewComponent implements OnInit {
   fileToUpload: File;
 
   constructor(
-    private cloudFunction: CloudFunctionsService,
     private storage: AngularFireStorage,
     private afs: AngularFirestore,
     private snackBar: MatSnackBar,
@@ -46,10 +44,6 @@ export class NewComponent implements OnInit {
         return { id, ...data };
       })
     });
-
-    setTimeout(() => {
-      this.cloudFunction.call(Functions.followCharacter);
-    }, 1000);
   }
 
   ngOnInit() {

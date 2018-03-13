@@ -18,7 +18,7 @@ export class CloudFunctionsService {
     return await this.afAuth.auth.currentUser.getIdToken(true);
   }
 
-  public async call(url: Functions) {
+  public async call(url: Functions, options = {}) {
     try {
       const idToken = await this.requestIdToken();
       const httpOptions = {
@@ -26,7 +26,7 @@ export class CloudFunctionsService {
           'Authorization': `Bearer ${idToken}`
         })
       };
-      await this.http.post(url, {}, httpOptions).toPromise();
+      await this.http.post(url, options, httpOptions).toPromise();
     } catch (e) {
       console.log(e);
       throw e;
