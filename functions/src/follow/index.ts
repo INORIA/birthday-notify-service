@@ -18,17 +18,24 @@ app.post('*', async (req: express.Request, res: express.Response) => {
   const characterId = req.body.characterId;
 
   try {
+    const current = await admin
+      .firestore()
+      .collection('user_follows')
+      .doc(userId)
+      .get();
+    const following = current.data()[characterId];
+
     await admin
       .firestore()
       .collection('character_followers')
       .doc(characterId)
-      .set({ [userId]: true }, { merge: true });
+      .set({ [userId]: !following }, { merge: true });
 
     await admin
       .firestore()
       .collection('user_follows')
       .doc(userId)
-      .set({ [characterId]: true }, { merge: true });
+      .set({ [characterId]: !following }, { merge: true });
 
     return res.json({});
   } catch(e) {

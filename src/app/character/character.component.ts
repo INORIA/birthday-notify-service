@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import 'rxjs/add/operator/mergeMap';
+import * as firebase from 'firebase';
 
 import { CloudFunctionsService, Functions } from '../services/cloud-functions.service';
 import { IWork } from '../models/work';
@@ -70,6 +71,14 @@ export class CharacterComponent implements OnInit {
     });
 
     zip(this.character, this.afAuth.authState).subscribe(([ { _id: characterId }, { uid } ]) => {
+      firebase
+        .firestore()
+        .collection('user_follows')
+        .doc(uid)
+        .get().then((e) => {
+          console.log(e.data());
+        });
+
       this.afs.doc(`user_follows/${uid}`).valueChanges().subscribe((userFollows) => {
         this.following = userFollows[characterId] === true;
       });
