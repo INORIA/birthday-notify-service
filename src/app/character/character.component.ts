@@ -71,8 +71,6 @@ export class CharacterComponent implements OnInit {
 
     zip(this.character, this.afAuth.authState).subscribe(([ { _id: characterId }, { uid } ]) => {
       this.afs.doc(`user_follows/${uid}`).valueChanges().subscribe((userFollows) => {
-        console.log(uid);
-        console.log();
         this.following = userFollows[characterId] === true;
       });
     });
