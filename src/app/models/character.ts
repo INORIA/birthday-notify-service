@@ -1,6 +1,7 @@
 import { DocumentReference } from "@firebase/firestore-types";
 
 export interface ICharacter {
+  _id?: string;
   id: string;
   name: string;
   ruby: string;
@@ -11,7 +12,6 @@ export interface ICharacter {
 }
 
 export class Character implements ICharacter {
-
   id = '';
   name = '';
   ruby = '';

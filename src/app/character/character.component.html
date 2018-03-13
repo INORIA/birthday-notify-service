@@ -11,6 +11,15 @@
         <div class="image" [appBackImg]="character.image">{{ character.name }}</div>
       </dt>
       <dd class="description">
+        <div class="actions" *ngIf="afAuth.authState | async">
+          <div *ngIf="following; else notFollowing">
+            <button type="button" mat-raised-button (click)="follow(character._id)" color="primary">フォロー中</button>
+          </div>
+          <ng-template #notFollowing>
+            <button type="button" mat-raised-button (click)="follow(character._id)">フォローする</button>
+          </ng-template>
+
+        </div>
         <ul class="main">
           <li class="work" *ngIf="work | async as work">{{ work.name }}</li>
           <li class="name">{{ character.name }}</li>

@@ -8,6 +8,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 import {
   MatButtonModule,
   MatCheckboxModule,
@@ -23,6 +24,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 
+import { CloudFunctionsService } from './services/cloud-functions.service';
 import { BackImgDirective } from './back-img.directive';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -60,6 +62,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
@@ -81,7 +84,7 @@ const appRoutes: Routes = [
     MatMenuModule,
     MatSelectModule
   ],
-  providers: [],
+  providers: [ CloudFunctionsService ],
   bootstrap: [AppComponent],
   entryComponents: [LoginViewComponent]
 })
