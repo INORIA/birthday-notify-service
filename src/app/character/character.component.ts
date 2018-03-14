@@ -84,9 +84,9 @@ export class CharacterComponent implements OnInit {
       });
     });
 
-    setTimeout(() => {
-      this.cloudFunction.call(Functions.sendEmail);
-    }, 1000);
+    // setTimeout(() => {
+    //   this.cloudFunction.call(Functions.sendEmail);
+    // }, 1000);
   }
 
   follow(characterId) {
