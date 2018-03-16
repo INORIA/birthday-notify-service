@@ -1,7 +1,7 @@
 <header>
   <div class="menu-bar">
     <div class="logo">
-      <a href="">BN</a>
+      <a [routerLink]="['/']">BN</a>
     </div>
     <div class="actions" *ngIf="afAuth.authState | async as user; else showLogin">
       <button class="button" mat-button [matMenuTriggerFor]="userMenu">
@@ -12,18 +12,13 @@
 </header>
 
 <mat-menu #userMenu="matMenu" xPosition="before" yPosition="below" [overlapTrigger]=false>
-  <button mat-menu-item>
+  <button mat-menu-item [routerLink]="['/', 'settings']">
     設定
   </button>
   <button mat-menu-item (click)="logout($event)">
     LOGOUT
   </button>
 </mat-menu>
-
-<!-- <div *ngIf="afAuth.authState | async as user; else showLogin">
-  <h1>Hello {{ user.displayName }}!</h1>
-  <button mat-raised-button color="warn" (click)="logout()">Logout</button>
-</div> -->
 
 <ng-template #showLogin>
   <div class="actions">
