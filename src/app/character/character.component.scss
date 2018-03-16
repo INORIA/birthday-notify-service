@@ -60,20 +60,48 @@ main {
   height: 100%;
   max-width: $content-max;
   margin: 0 auto;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @media (min-width: $view-sm) {
+    flex-wrap: nowrap;
+    width: calc(100% - 40px);
+  }
+}
+
+dt {
+  width: 100%;
+
+  @media (min-width: $view-sm) {
+    width: auto;
+  }
 }
 
 .image {
-  width: 400px;
-  height: 500px;
+  width: calc(100% - 20px);
+  height: 400px;
+  margin: 10px;
   text-indent: -500px;
   overflow: hidden;
   background-position: top center;
   background-size: cover;
+
+  @media (min-width: $view-sm) {
+    width: 400px;
+    height: 500px;
+    margin: 0;
+  }
 }
 
 .description {
-  width: 100%;
-  margin-left: 4rem;
+  width: calc(100% - 60px);
+  margin: 20px 30px;
+
+  @media (min-width: $view-sm) {
+    width: 100%;
+    margin: 10px;
+    margin-left: 4rem;
+  }
 }
 
 .actions {
@@ -83,26 +111,52 @@ main {
 
 .main {
   width: 100%;
-  color: $color-text-light;
-  margin-top: 4rem;
+  color: $color-text;
+  margin-top: 25px;
   list-style: none;
   padding: 0;
 
   .work {
+    font-size: 1rem;
     margin-bottom: 1rem;
   }
 
   .name {
-    font-size: 2rem;
+    font-size: 1.3rem;
   }
 
   .ruby {
+    font-size: 0.8rem;
     letter-spacing: 2px;
   }
 
   .birthday {
-    font-size: 2rem;
+    font-size: 1.2rem;
     margin-top: 1rem;
+  }
+
+  @media (min-width: $view-sm) {
+    color: $color-text-light;
+    margin-top: 4rem;
+
+    .work {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .name {
+      font-size: 2rem;
+    }
+
+    .ruby {
+      font-size: 1rem;
+      letter-spacing: 2px;
+    }
+
+    .birthday {
+      font-size: 2rem;
+      margin-top: 1rem;
+    }
   }
 }
 
