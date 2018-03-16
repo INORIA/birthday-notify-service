@@ -4,6 +4,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 export enum Functions {
   followCharacter = 'https://us-central1-angularfire-db7be.cloudfunctions.net/followCharacter',
+  sendEmail = 'https://us-central1-angularfire-db7be.cloudfunctions.net/sendEmail'
 }
 
 @Injectable()

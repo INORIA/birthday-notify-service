@@ -83,6 +83,10 @@ export class CharacterComponent implements OnInit {
         this.following = userFollows[characterId] === true;
       });
     });
+
+    // setTimeout(() => {
+    //   this.cloudFunction.call(Functions.sendEmail);
+    // }, 1000);
   }
 
   follow(characterId) {
