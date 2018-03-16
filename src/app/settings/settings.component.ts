@@ -9,6 +9,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class SettingsComponent implements OnInit {
 
   email: string;
+  uid: string;
+  displayName: string;
 
   constructor(
     public afAuth: AngularFireAuth
@@ -17,7 +19,10 @@ export class SettingsComponent implements OnInit {
   async ngOnInit() {
 
     this.afAuth.authState.subscribe(() => {
-      this.email = this.afAuth.auth.currentUser.email;
+      const user = this.afAuth.auth.currentUser;
+      this.email = user.email;
+      this.uid = user.uid;
+      this.displayName = user.displayName;
     });
   }
 

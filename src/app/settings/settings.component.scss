@@ -33,19 +33,38 @@ section {
 
 .config-title {
   font-size: 1.2rem;
+  margin-top: 40px;
 }
 
 .config-view {
-  margin: 0 30px;
+  margin: 30px 30px 0 30px;
+
+  &:first-child {
+    margin: 0 30px;
+  }
 }
 
 .settings-section {
   margin: 40px auto;
 }
 
+.input-wrapper {
+  margin-top: 20px !important;
+}
+
+.input-field {
+  width: 100%;
+  max-width: 400px;
+}
+
 .email-field {
   width: 100%;
   max-width: 400px;
+}
+
+.id-field {
+  margin: 30px 0;
+  color: $color-text;
 }
 
 .email-register-button {
