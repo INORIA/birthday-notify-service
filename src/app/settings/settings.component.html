@@ -8,13 +8,19 @@
     <h2 class="config-title">メール設定</h2>
     <mat-card class="config-view">
       <mat-form-field class="email-field">
-          <input placeholder="Email" matInput type="text">
+          <input
+            placeholder="Email"
+            matInput
+            type="text"
+            [(ngModel)]="email"
+          >
       </mat-form-field>
 
       <button
         class="email-register-button"
         mat-button
         color="primary"
+        (click)="updateEmail()"
       >登録</button>
     </mat-card>
   </section>

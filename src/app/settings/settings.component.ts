@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'app-settings',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 
-  constructor() { }
+  email: string;
 
-  ngOnInit() {
+  constructor(
+    public afAuth: AngularFireAuth
+  ) { }
+
+  async ngOnInit() {
+
+    this.afAuth.authState.subscribe(() => {
+      this.email = this.afAuth.auth.currentUser.email;
+    });
+  }
+
+  async updateEmail() {
+    const user = this.afAuth.auth.currentUser;
+    if (!user) { return; }
+    await user.updateEmail(this.email);
   }
 
 }
