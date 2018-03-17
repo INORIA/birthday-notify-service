@@ -83,7 +83,7 @@ console.log(environment);
     MatInputModule,
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true }
+      { enableTracing: false }
     ),
     FormsModule,
     MatSnackBarModule,
