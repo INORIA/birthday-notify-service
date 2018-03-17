@@ -53,8 +53,6 @@ const appRoutes: Routes = [
   }
 ];
 
-console.log(environment);
-
 @NgModule({
   declarations: [
     AppComponent,
