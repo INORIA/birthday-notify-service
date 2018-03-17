@@ -64,24 +64,24 @@ export class CharacterComponent implements OnInit {
       // .valueChanges()
       // .flatMap(result => result);
 
-    this.character.subscribe((character: ICharacter) => {
+    zip(this.character, this.afAuth.authState).subscribe(([ character, user ]) => {
       if (character.work) {
         this.work = this.afs.doc<IWork>(`works/${character.work.id}`).valueChanges();
       }
-    });
 
-    zip(this.character, this.afAuth.authState).subscribe(([ { _id: characterId }, { uid } ]) => {
-      firebase
-        .firestore()
-        .collection('user_follows')
-        .doc(uid)
-        .get().then((e) => {
-          console.log(e.data());
+      if (user) {
+        firebase
+          .firestore()
+          .collection('user_follows')
+          .doc(user.uid)
+          .get().then((e) => {
+            console.log(e.data());
+          });
+
+        this.afs.doc(`user_follows/${user.uid}`).valueChanges().subscribe((userFollows) => {
+          this.following = userFollows[character._id] === true;
         });
-
-      this.afs.doc(`user_follows/${uid}`).valueChanges().subscribe((userFollows) => {
-        this.following = userFollows[characterId] === true;
-      });
+      }
     });
 
     // setTimeout(() => {
