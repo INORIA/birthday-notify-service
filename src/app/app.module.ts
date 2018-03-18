@@ -33,6 +33,7 @@ import { CharacterComponent } from './character/character.component';
 import { NewComponent } from './new/new.component';
 import { LoginViewComponent } from './login-view/login-view.component';
 import { SettingsComponent } from './settings/settings.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const appRoutes: Routes = [
   {
@@ -46,6 +47,10 @@ const appRoutes: Routes = [
   {
     path: 'settings',
     component: SettingsComponent,
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent
   },
   {
     path: ':id',
@@ -63,7 +68,8 @@ const appRoutes: Routes = [
     CharacterComponent,
     NewComponent,
     LoginViewComponent,
-    SettingsComponent
+    SettingsComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

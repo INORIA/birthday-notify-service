@@ -1,0 +1,12 @@
+<main>
+  <section class="section">
+    <h1 class="head">フォロー中</h1>
+    <div class="character-list">
+      <mat-card class="character-item" *ngFor="let character of followingCharacters$ | async" [appBackImg]="character.image" [routerLink]="['/', character.id]">
+        <div class="character-info">
+          <span class="character-name">{{ character.name }}</span>
+        </div>
+      </mat-card>
+    </div>
+  </section>
+</main>

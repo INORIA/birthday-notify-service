@@ -12,6 +12,9 @@
 </header>
 
 <mat-menu #userMenu="matMenu" xPosition="before" yPosition="below" [overlapTrigger]=false>
+  <button mat-menu-item [routerLink]="['/', 'profile']">
+    マイページ
+  </button>
   <button mat-menu-item [routerLink]="['/', 'settings']">
     設定
   </button>
