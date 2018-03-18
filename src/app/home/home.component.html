@@ -8,8 +8,8 @@
 </section>
 
 <section class="top-section">
-  <h1 class="head">headline</h1>
-  <div class="character-list">
+  <h1 class="head">キャラクターリスト</h1>
+　  <div class="character-list">
     <mat-card class="character-item" *ngFor="let character of characters | async" [appBackImg]="character.image" [routerLink]="['/', character.id]">
       <div class="character-info">
         <span class="character-name">{{ character.name }}</span>
@@ -18,9 +18,9 @@
   </div>
 </section>
 
-<section class="top-section">
+<!-- <section class="top-section">
   <h1 class="head">headline 2</h1>
   <div>
     コンテンツ
   </div>
-</section>
+</section> -->
