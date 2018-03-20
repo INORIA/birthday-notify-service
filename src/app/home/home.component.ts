@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   characters$: Observable<any[]>;
   birthToday$: Observable<any[]>;
   birthThisMonth$: Observable<any[]>;
+  news$: Observable<any[]>;
 
   constructor(private db: AngularFirestore, public afAuth: AngularFireAuth) {
     const date = new Date();
@@ -47,6 +48,8 @@ export class HomeComponent implements OnInit {
           return { _id, ...data };
         });
       });
+
+    this.news$ = this.db.collection('news', ref => ref.orderBy('date', 'desc')).valueChanges();
    }
 
   ngOnInit() {

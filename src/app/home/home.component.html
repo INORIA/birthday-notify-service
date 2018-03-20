@@ -48,3 +48,17 @@
     </mat-card>
   </div>
 </section>
+
+<div class="divider"></div>
+
+<section class="top-section">
+  <h2 class="head">NEWS</h2>
+
+  <ul class="news-list">
+    <li class="item" *ngFor="let new of news$ | async">
+      <span class="date">{{ new.date | date:'yyyy-MM-dd' }}</span>
+      <span class="title">{{ new.title }}</span>
+      <span class="body" *ngIf="new.body">{{ new.body }}</span>
+    </li>
+  </ul>
+</section>
