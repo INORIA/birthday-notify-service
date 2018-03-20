@@ -9,8 +9,23 @@
 
 <section class="top-section">
 
+  <ng-container>
+    <ng-container *ngIf="birthToday$ | async as characters">
+      <ng-container *ngIf="characters.length">
+        <h2 class="head">今日が誕生日！！！</h2>
+        <div class="character-list">
+          <mat-card class="character-item" *ngFor="let character of characters" [appBackImg]="character.image" [routerLink]="['/', character.id]">
+            <div class="character-info">
+              <span class="character-name">{{ character.name }}</span>
+            </div>
+          </mat-card>
+        </div>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+
   <h2 class="head">今月が誕生日！</h2>
-  <div class="character-list" *ngIf="birthThisMonth | async as characters">
+  <div class="character-list" *ngIf="birthThisMonth$ | async as characters">
     <ng-container *ngIf="characters.length; else noThisMonth">
       <mat-card class="character-item" *ngFor="let character of characters" [appBackImg]="character.image" [routerLink]="['/', character.id]">
         <div class="character-info">
@@ -26,7 +41,7 @@
 
   <h2 class="head">キャラクターリスト</h2>
   <div class="character-list">
-    <mat-card class="character-item" *ngFor="let character of characters | async" [appBackImg]="character.image" [routerLink]="['/', character.id]">
+    <mat-card class="character-item" *ngFor="let character of characters$ | async" [appBackImg]="character.image" [routerLink]="['/', character.id]">
       <div class="character-info">
         <span class="character-name">{{ character.name }}</span>
       </div>

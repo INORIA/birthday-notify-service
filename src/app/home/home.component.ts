@@ -12,12 +12,17 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class HomeComponent implements OnInit {
 
   private characterCollection: AngularFirestoreCollection<any>;
-  characters: Observable<any[]>;
-  birthThisMonth: Observable<any[]>;
+  characters$: Observable<any[]>;
+  birthToday$: Observable<any[]>;
+  birthThisMonth$: Observable<any[]>;
 
   constructor(private db: AngularFirestore, public afAuth: AngularFireAuth) {
+    const date = new Date();
+    const thisDate = '' + date.getDate();
+    const thisMonth = '' + (date.getMonth() + 1);
+
     this.characterCollection = db.collection('characters');
-    this.characters = this.characterCollection.snapshotChanges().map(actions => {
+    this.characters$ = this.characterCollection.snapshotChanges().map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data();
         const _id = a.payload.doc.id;
@@ -25,8 +30,16 @@ export class HomeComponent implements OnInit {
       });
     });;
 
-    const thisMonth = '' + (new Date().getMonth() + 1);
-    this.birthThisMonth = this.db.collection('characters', ref => ref.where('birthday_month', '==', thisMonth))
+    this.birthThisMonth$ = this.db.collection('characters', ref => ref.where('birthday_month', '==', thisMonth))
+      .snapshotChanges().map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const _id = a.payload.doc.id;
+          return { _id, ...data };
+        });
+      });
+
+    this.birthToday$ = this.db.collection('characters', ref => ref.where('birthday_month', '==', thisMonth).where('birthday_date', '==', thisDate))
       .snapshotChanges().map(actions => {
         return actions.map(a => {
           const data = a.payload.doc.data();
