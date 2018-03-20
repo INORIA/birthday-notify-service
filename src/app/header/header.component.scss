@@ -29,12 +29,16 @@ header {
     height: 100%;
     text-decoration: none;
     color: $color-text-light;
-    padding: 0 2em;
+    padding: 0 1em;
     transition: background-color .4s;
   }
 
   > *:hover {
     background-color: $color-primary;
+  }
+
+  img {
+    width: 60px;
   }
 }
 

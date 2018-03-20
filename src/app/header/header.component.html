@@ -1,7 +1,7 @@
 <header>
   <div class="menu-bar">
     <div class="logo">
-      <a [routerLink]="['/']">BN</a>
+      <a [routerLink]="['/']"><img src="/assets/images/logo.png" alt=""></a>
     </div>
     <div class="actions" *ngIf="afAuth.authState | async as user; else showLogin">
       <button class="button" mat-button [matMenuTriggerFor]="userMenu">
