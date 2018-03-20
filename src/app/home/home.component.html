@@ -8,8 +8,24 @@
 </section>
 
 <section class="top-section">
-  <h1 class="head">キャラクターリスト</h1>
-　  <div class="character-list">
+
+  <h2 class="head">今月が誕生日！</h2>
+  <div class="character-list" *ngIf="birthThisMonth | async as characters">
+    <ng-container *ngIf="characters.length; else noThisMonth">
+      <mat-card class="character-item" *ngFor="let character of characters" [appBackImg]="character.image" [routerLink]="['/', character.id]">
+        <div class="character-info">
+          <span class="character-name">{{ character.name }}</span>
+        </div>
+      </mat-card>
+    </ng-container>
+  </div>
+  <ng-template #noThisMonth>
+    今月が誕生日の子はいないようです
+  </ng-template>
+
+
+  <h2 class="head">キャラクターリスト</h2>
+  <div class="character-list">
     <mat-card class="character-item" *ngFor="let character of characters | async" [appBackImg]="character.image" [routerLink]="['/', character.id]">
       <div class="character-info">
         <span class="character-name">{{ character.name }}</span>
@@ -17,10 +33,3 @@
     </mat-card>
   </div>
 </section>
-
-<!-- <section class="top-section">
-  <h1 class="head">headline 2</h1>
-  <div>
-    コンテンツ
-  </div>
-</section> -->

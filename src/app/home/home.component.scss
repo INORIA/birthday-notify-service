@@ -64,8 +64,12 @@ $horizontal-items: 4;
   margin-right: auto;
 
   & .head {
-    margin-top: 0;
+    margin-top: 3rem;
     color: $color-text;
+
+    &:first-child {
+      margin-top: 0;
+    }
   }
 }
 
