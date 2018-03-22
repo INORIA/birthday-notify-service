@@ -73,7 +73,6 @@ export class NewComponent implements OnInit {
     this.formState = FormStates.Submitting;
 
     try {
-      const downloadURL = await this.uploadFile();
 
       const user = this.afAuth.auth.currentUser;
       const ref = await this.postData({
@@ -82,9 +81,18 @@ export class NewComponent implements OnInit {
         ruby: this.model.ruby,
         birthday_month: this.model.birthday_month,
         birthday_date: this.model.birthday_date,
-        image: downloadURL,
         work: firebase.firestore().doc(`/works/${this.model.work}`),
         accountId: user.uid
+      });
+
+      const doc = await ref.get();
+      const id = doc.id;
+      this.uploadPercent = 20;
+
+      const downloadURL = await this.uploadFile(id);
+
+      await ref.update({
+        image: downloadURL
       });
 
       this.uploadPercent = 100;
@@ -101,17 +109,17 @@ export class NewComponent implements OnInit {
     }
   }
 
-  private uploadFile(): Promise<string> {
+  private uploadFile(id: string): Promise<string> {
     return new Promise((resolve, reject) => {
-      const task = this.storage.upload(`characters/${this.fileToUpload.name}`, this.fileToUpload);
+      const task = this.storage.upload(`characters/${id}/${this.fileToUpload.name}`, this.fileToUpload);
       task.downloadURL().subscribe((e) => {
         resolve(e);
       }, (error: Error) => {
         reject(error);
       });
       task.percentageChanges().subscribe((c) => {
-        // Upload section ends 80%
-        this.uploadPercent = c / (100 + 25) * 100;
+        // Upload section starts from 20% and ends around 90%
+        this.uploadPercent = (c / (100 + 42) * 100) + 0.2;
       });
       this.imageUploadPercent = task.percentageChanges();
       this.downloadURL = task.downloadURL();
