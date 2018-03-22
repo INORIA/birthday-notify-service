@@ -1,35 +1,37 @@
-<main *ngIf="character | async as character">
+<main>
   <section class="hero">
     <div class="overlay">
       <div class="blurred" [appBackImg]="character.image"></div>
     </div>
   </section>
 
-  <section class="character-info">
-    <dl class="character">
-      <dt>
-        <div class="image" [appBackImg]="character.image">{{ character.name }}</div>
-      </dt>
-      <dd class="description">
-        <div class="actions" *ngIf="afAuth.authState | async">
-          <div *ngIf="following; else notFollowing">
-            <button type="button" mat-raised-button (click)="follow(character._id)" color="primary">フォロー中</button>
-          </div>
-          <ng-template #notFollowing>
-            <button type="button" mat-raised-button (click)="follow(character._id)">フォローする</button>
-          </ng-template>
+  <ng-container *ngIf="character | async as character">
+    <section class="character-info">
+      <dl class="character">
+        <dt>
+          <div class="image" [appBackImg]="character.image">{{ character.name }}</div>
+        </dt>
+        <dd class="description">
+          <div class="actions" *ngIf="afAuth.authState | async">
+            <div *ngIf="following; else notFollowing">
+              <button type="button" mat-raised-button (click)="follow(character._id)" color="primary">フォロー中</button>
+            </div>
+            <ng-template #notFollowing>
+              <button type="button" mat-raised-button (click)="follow(character._id)">フォローする</button>
+            </ng-template>
 
-        </div>
-        <ul class="main">
-          <li class="work" *ngIf="work | async as work">{{ work.name }}</li>
-          <li class="name">{{ character.name }}</li>
-          <li class="ruby">{{ character.ruby }}</li>
-          <li class="birthday">{{ character.birthday_month }}月{{ character.birthday_date }}日</li>
-        </ul>
-        <div class="sub">
-          <!-- 何かあればコメント -->
-        </div>
-      </dd>
-    </dl>
-  </section>
+          </div>
+          <ul class="main">
+            <li class="work" *ngIf="work | async as work">{{ work.name }}</li>
+            <li class="name">{{ character.name }}</li>
+            <li class="ruby">{{ character.ruby }}</li>
+            <li class="birthday">{{ character.birthday_month }}月{{ character.birthday_date }}日</li>
+          </ul>
+          <div class="sub">
+            <!-- 何かあればコメント -->
+          </div>
+        </dd>
+      </dl>
+    </section>
+  </ng-container>
 </main>
