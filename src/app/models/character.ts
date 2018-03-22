@@ -9,6 +9,7 @@ export interface ICharacter {
   birthday_month: number;
   birthday_date: number;
   work: DocumentReference;
+  accountId: string;
 }
 
 export class Character implements ICharacter {
@@ -19,6 +20,7 @@ export class Character implements ICharacter {
   birthday_month;
   birthday_date;
   work;
+  accountId;
 
   constructor() {
   }

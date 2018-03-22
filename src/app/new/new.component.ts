@@ -7,6 +7,7 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { DocumentReference } from "@firebase/firestore-types";
+import { AngularFireAuth } from 'angularfire2/auth';
 
 import { ICharacter, Character } from '../models/character';
 import { IWork } from '../models/work';
@@ -34,7 +35,8 @@ export class NewComponent implements OnInit {
     private storage: AngularFireStorage,
     private afs: AngularFirestore,
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private afAuth: AngularFireAuth
   ) {
     const worksCollection = afs.collection<IWork>('works');
     this.works = worksCollection.snapshotChanges().map(actions => {
@@ -73,6 +75,7 @@ export class NewComponent implements OnInit {
     try {
       const downloadURL = await this.uploadFile();
 
+      const user = this.afAuth.auth.currentUser;
       const ref = await this.postData({
         id: this.model.id,
         name: this.model.name,
@@ -81,6 +84,7 @@ export class NewComponent implements OnInit {
         birthday_date: this.model.birthday_date,
         image: downloadURL,
         work: firebase.firestore().doc(`/works/${this.model.work}`),
+        accountId: user.uid
       });
 
       this.uploadPercent = 100;

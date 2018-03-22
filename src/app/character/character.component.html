@@ -1,11 +1,11 @@
 <main>
-  <section class="hero">
-    <div class="overlay">
-      <div class="blurred" [appBackImg]="character.image"></div>
-    </div>
-  </section>
-
   <ng-container *ngIf="character | async as character">
+    <section class="hero">
+      <div class="overlay">
+        <div class="blurred" [appBackImg]="character.image"></div>
+      </div>
+    </section>
+
     <section class="character-info">
       <dl class="character">
         <dt>
