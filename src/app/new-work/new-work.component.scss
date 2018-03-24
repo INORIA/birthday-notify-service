@@ -1,0 +1,189 @@
+@import "src/variables";
+
+main {
+  min-height: calc(100vh - 60px);
+  overflow: hidden;
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  // height: 500px;
+  border-top: 1px solid transparent;
+  margin-top: -1px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 405px;
+  overflow: hidden;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+}
+
+
+
+.headline {
+  position: relative;
+  margin: 70px auto 0 auto;
+  border-top: solid 1rem transparent;
+  max-width: $content-max;
+  font-size: 2rem;
+  color: #efefef;
+  z-index: 1;
+}
+
+
+.work-info {
+  margin-top: 20px;
+}
+
+
+.work {
+  top: 40%;
+  left: 0;
+  right: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  max-width: $content-max;
+  margin: 0 auto;
+
+  .image {
+    width: 400px;
+    height: 500px;
+    overflow: hidden;
+    background-position: top center;
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+
+    input[type="file"] {
+      display: none;
+    }
+  }
+
+  .image-input {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.preview {
+      transition: .4s;
+      opacity: 0;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+        opacity: 1;
+      }
+      &.disabled:hover {
+        background-color: transparent;
+        opacity: 0;
+      }
+    }
+
+    > * {
+      font-size: 100px;
+      width: 100px;
+      height: 100px;
+      color: $color-text-light;
+    }
+  }
+
+  .description {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 4rem;
+    width: 80%;
+  }
+
+  .main {
+    width: 100%;
+    color: $color-text-light;
+    margin-top: 0;
+    list-style: none;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+
+    .input {
+      width: 100%;
+    }
+
+    .id {
+      font-size: 1.2rem;
+    }
+
+    .work {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .name {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .ruby {
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+    }
+
+    .birthday {
+      display: flex;
+      font-size: 1.2rem;
+      margin-top: 1rem;
+
+      .separator {
+        display: block;
+        padding: 0.4375em 1em;
+        border-top: 0.84375em solid transparent;
+      }
+    }
+  }
+
+  .sub {
+    width: 100%;
+    margin-bottom: 4rem;
+  }
+
+  .register-button {
+    position: relative;
+    width: 100%;
+    height: 60px;
+  }
+
+  .loader {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+  }
+}
+
+
+// override material input styles
+
+::ng-deep .default-theme {
+  .mat-input-underline {
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+
+  .mat-input-placeholder, .mat-select-value, .mat-select-placeholder, .mat-select-arrow {
+    color:  rgba(255, 255, 255, 0.7);
+  }
+}

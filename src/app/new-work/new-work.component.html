@@ -1,3 +1,37 @@
-<p>
-  new-work works!
-</p>
+<main>
+  <section class="hero">
+    <div class="overlay">
+      <div class="blurred"></div>
+    </div>
+
+    <h1 class="headline">作品新規登録</h1>
+  </section>
+
+  <section class="work-info">
+    <form action="" #chaForm="ngForm">
+      <div class="work">
+        <div class="description">
+          <ul class="main">
+              <li class="work">
+                  <mat-select placeholder="カテゴリを選択" name="work" id="" required>
+                    <mat-option value="">カテゴリを選択</mat-option>
+                  </mat-select>
+                </li>
+            <li class="name">
+              <mat-form-field class="input">
+                <input type="text" name="cname" matInput placeholder="作品名" required>
+              </mat-form-field>
+            </li>
+          </ul>
+          <div class="sub">
+            <button type="submit" class="register-button" mat-raised-button color="primary">
+              <mat-spinner diameter="40" class="loader" color="primary"></mat-spinner>
+              <mat-progress-spinner diameter="40" class="loader" color="primary" mode="determinate" [value]="uploadPercent"></mat-progress-spinner>
+              登録
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </section>
+</main>
