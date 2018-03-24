@@ -34,6 +34,7 @@ import { NewComponent } from './new/new.component';
 import { LoginViewComponent } from './login-view/login-view.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ProfileComponent } from './profile/profile.component';
+import { NewWorkComponent } from './new-work/new-work.component';
 
 const appRoutes: Routes = [
   {
@@ -43,6 +44,10 @@ const appRoutes: Routes = [
   {
     path: 'new',
     component: NewComponent,
+  },
+  {
+    path: 'new/work',
+    component: NewWorkComponent
   },
   {
     path: 'settings',
@@ -69,7 +74,8 @@ const appRoutes: Routes = [
     NewComponent,
     LoginViewComponent,
     SettingsComponent,
-    ProfileComponent
+    ProfileComponent,
+    NewWorkComponent
   ],
   imports: [
     BrowserModule,
