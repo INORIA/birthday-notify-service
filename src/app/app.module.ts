@@ -35,6 +35,7 @@ import { LoginViewComponent } from './login-view/login-view.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NewWorkComponent } from './new-work/new-work.component';
+import { NewCategoryComponent } from './new-category/new-category.component';
 
 const appRoutes: Routes = [
   {
@@ -48,6 +49,10 @@ const appRoutes: Routes = [
   {
     path: 'new/work',
     component: NewWorkComponent
+  },
+  {
+    path: 'new/category',
+    component: NewCategoryComponent
   },
   {
     path: 'settings',
@@ -75,7 +80,8 @@ const appRoutes: Routes = [
     LoginViewComponent,
     SettingsComponent,
     ProfileComponent,
-    NewWorkComponent
+    NewWorkComponent,
+    NewCategoryComponent
   ],
   imports: [
     BrowserModule,

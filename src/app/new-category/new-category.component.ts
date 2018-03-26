@@ -1,24 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { DocumentReference } from "@firebase/firestore-types";
 import { AngularFireStorage } from 'angularfire2/storage';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { DocumentReference } from "@firebase/firestore-types";
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
+import { AngularFireAuth } from 'angularfire2/auth';
 
-import { IWork, Work } from '../models/work';
+import { ICategory, Category } from '../models/category';
 import { FormStates } from '../enums/form-states';
 
-
 @Component({
-  selector: 'app-new-work',
-  templateUrl: './new-work.component.html',
-  styleUrls: ['./new-work.component.scss']
+  selector: 'app-new-category',
+  templateUrl: './new-category.component.html',
+  styleUrls: ['./new-category.component.scss']
 })
-export class NewWorkComponent implements OnInit {
+export class NewCategoryComponent implements OnInit {
 
   FormStates = FormStates;
   formState = FormStates.WaitForSubmit;
-  model = new Work();
+  model = new Category();
   submitPercent: number = 0;
 
   constructor(
@@ -28,7 +27,6 @@ export class NewWorkComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
   }
 
   async onSubmit(e) {
@@ -38,7 +36,6 @@ export class NewWorkComponent implements OnInit {
     try {
       const user = this.afAuth.auth.currentUser;
       await this.postData({
-        category: this.model.category,
         name: this.model.name
       });
       this.submitPercent = 100;
@@ -54,8 +51,8 @@ export class NewWorkComponent implements OnInit {
     }
   }
 
-  private postData(data: IWork): Promise<DocumentReference> {
-    return this.afs.collection<IWork>('works').add(data);
+  private postData(data: ICategory): Promise<DocumentReference> {
+    return this.afs.collection<ICategory>('categories').add(data);
   }
 
   private message(message: string) {
