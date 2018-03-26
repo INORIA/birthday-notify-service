@@ -1,5 +1,5 @@
 <main>
-  <ng-container *ngIf="character | async as character">
+  <ng-container *ngIf="character$ | async as character">
     <section class="hero">
       <div class="overlay">
         <div class="blurred" [appBackImg]="character.image"></div>
@@ -22,7 +22,7 @@
 
           </div>
           <ul class="main">
-            <li class="work" *ngIf="work | async as work">{{ work.name }}</li>
+            <li class="work" *ngIf="work$ | async as work">{{ work.name }}</li>
             <li class="name">{{ character.name }}</li>
             <li class="ruby">{{ character.ruby }}</li>
             <li class="birthday">{{ character.birthday_month }}月{{ character.birthday_date }}日</li>

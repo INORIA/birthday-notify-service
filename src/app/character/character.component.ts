@@ -11,6 +11,7 @@ import * as firebase from 'firebase';
 import { CloudFunctionsService, Functions } from '../services/cloud-functions.service';
 import { IWork } from '../models/work';
 import { ICharacter } from '../models/character';
+import { ICategory } from '../models/category';
 
 @Component({
   selector: 'app-character',
@@ -19,8 +20,8 @@ import { ICharacter } from '../models/character';
 })
 export class CharacterComponent implements OnInit {
   id: string;
-  character: Observable<any>;
-  work: Observable<IWork>;
+  character$: Observable<any>;
+  work$: Observable<IWork>;
   following: boolean;
 
   constructor(
@@ -48,7 +49,7 @@ export class CharacterComponent implements OnInit {
       });
     }
 
-    this.character = this.afs
+    this.character$ = this.afs
       .collection(
         'characters',
          ref => ref.where('id', '==', this.id)
@@ -61,32 +62,18 @@ export class CharacterComponent implements OnInit {
           return { _id, ...data };
         })[0];
       });
-      // .valueChanges()
-      // .flatMap(result => result);
 
-    zip(this.character, this.afAuth.authState).subscribe(([ character, user ]) => {
+    zip(this.character$, this.afAuth.authState).subscribe(async ([ character, user ]) => {
       if (character.work) {
-        this.work = this.afs.doc<IWork>(`works/${character.work.id}`).valueChanges();
+        this.work$ = this.afs.doc<IWork>(`works/${character.work.id}`).valueChanges();
       }
 
       if (user) {
-        firebase
-          .firestore()
-          .collection('user_follows')
-          .doc(user.uid)
-          .get().then((e) => {
-            console.log(e.data());
-          });
-
         this.afs.doc(`user_follows/${user.uid}`).valueChanges().subscribe((userFollows) => {
           this.following = userFollows[character._id] === true;
         });
       }
     });
-
-    // setTimeout(() => {
-    //   this.cloudFunction.call(Functions.sendEmail);
-    // }, 1000);
   }
 
   follow(characterId) {
