@@ -5,6 +5,7 @@ import { AngularFireStorage } from 'angularfire2/storage';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
+import * as firebase from 'firebase';
 
 import { IWork, Work } from '../models/work';
 import { FormStates } from '../enums/form-states';
@@ -50,7 +51,7 @@ export class NewWorkComponent implements OnInit {
     try {
       const user = this.afAuth.auth.currentUser;
       await this.postData({
-        category: this.model.category,
+        categories: [ firebase.firestore().doc(`/categories/${this.model.category}`) ],
         name: this.model.name
       });
       this.submitPercent = 100;
@@ -66,7 +67,7 @@ export class NewWorkComponent implements OnInit {
     }
   }
 
-  private postData(data: IWork): Promise<DocumentReference> {
+  private postData(data: any): Promise<DocumentReference> {
     return this.afs.collection<IWork>('works').add(data);
   }
 
