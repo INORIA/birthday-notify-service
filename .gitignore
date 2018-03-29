@@ -43,5 +43,6 @@ testem.log
 Thumbs.db
 
 /functions/lib/
+/functions/.runtimeconfig.json
 
 *.log
