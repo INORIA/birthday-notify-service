@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
@@ -25,6 +25,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 
 import { CloudFunctionsService } from './services/cloud-functions.service';
+import { AuthGuardService } from './services/auth-guard.service';
 import { BackImgDirective } from './back-img.directive';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -45,22 +46,27 @@ const appRoutes: Routes = [
   {
     path: 'new',
     component: NewComponent,
+    canActivate: [ AuthGuardService ]
   },
   {
     path: 'new/work',
-    component: NewWorkComponent
+    component: NewWorkComponent,
+    canActivate: [ AuthGuardService ]
   },
   {
     path: 'new/category',
-    component: NewCategoryComponent
+    component: NewCategoryComponent,
+    canActivate: [ AuthGuardService ]
   },
   {
     path: 'settings',
     component: SettingsComponent,
+    canActivate: [ AuthGuardService ]
   },
   {
     path: 'profile',
-    component: ProfileComponent
+    component: ProfileComponent,
+    canActivate: [ AuthGuardService ]
   },
   {
     path: ':id',
@@ -108,7 +114,7 @@ const appRoutes: Routes = [
     MatMenuModule,
     MatSelectModule
   ],
-  providers: [ CloudFunctionsService ],
+  providers: [ CloudFunctionsService, AuthGuardService ],
   bootstrap: [AppComponent],
   entryComponents: [LoginViewComponent]
 })
