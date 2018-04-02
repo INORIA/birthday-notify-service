@@ -37,6 +37,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NewWorkComponent } from './new-work/new-work.component';
 import { NewCategoryComponent } from './new-category/new-category.component';
+import { CategoryComponent } from './category/category.component';
 
 const appRoutes: Routes = [
   {
@@ -57,6 +58,10 @@ const appRoutes: Routes = [
     path: 'new/category',
     component: NewCategoryComponent,
     canActivate: [ AuthGuardService ]
+  },
+  {
+    path: 'category',
+    component: CategoryComponent
   },
   {
     path: 'settings',
@@ -87,7 +92,8 @@ const appRoutes: Routes = [
     SettingsComponent,
     ProfileComponent,
     NewWorkComponent,
-    NewCategoryComponent
+    NewCategoryComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
