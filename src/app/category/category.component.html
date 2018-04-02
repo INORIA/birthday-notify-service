@@ -1,3 +1,15 @@
-<p>
-  category works!
-</p>
+<main>
+  <section class="hero">
+    <h1 class="headline">キャラクター新規登録</h1>
+  </section>
+
+  <section class="top-section">
+    <h2 class="head">カテゴリ一覧</h2>
+
+    <ul>
+      <li class="item" *ngFor="let category of categories$ | async">
+        {{ category.name }}
+      </li>
+    </ul>
+  </section>
+</main>
