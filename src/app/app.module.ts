@@ -50,18 +50,18 @@ const appRoutes: Routes = [
     canActivate: [ AuthGuardService ]
   },
   {
-    path: 'new/work',
+    path: 'work/new',
     component: NewWorkComponent,
-    canActivate: [ AuthGuardService ]
-  },
-  {
-    path: 'new/category',
-    component: NewCategoryComponent,
     canActivate: [ AuthGuardService ]
   },
   {
     path: 'category',
     component: CategoryComponent
+  },
+  {
+    path: 'category/new',
+    component: NewCategoryComponent,
+    canActivate: [ AuthGuardService ]
   },
   {
     path: 'settings',
