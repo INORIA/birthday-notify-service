@@ -14,10 +14,10 @@ import { ICategory } from '../models/category';
 
 @Component({
   selector: 'app-new-work',
-  templateUrl: './new-work.component.html',
-  styleUrls: ['./new-work.component.scss']
+  templateUrl: './work-new.component.html',
+  styleUrls: ['./work-new.component.scss']
 })
-export class NewWorkComponent implements OnInit {
+export class WorkNewComponent implements OnInit {
 
   FormStates = FormStates;
   formState = FormStates.WaitForSubmit;

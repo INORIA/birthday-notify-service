@@ -35,8 +35,8 @@ import { NewComponent } from './new/new.component';
 import { LoginViewComponent } from './login-view/login-view.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ProfileComponent } from './profile/profile.component';
-import { NewWorkComponent } from './new-work/new-work.component';
-import { NewCategoryComponent } from './new-category/new-category.component';
+import { WorkNewComponent } from './work-new/work-new.component';
+import { CategoryNewComponent } from './category-new/category-new.component';
 import { CategoryComponent } from './category/category.component';
 
 const appRoutes: Routes = [
@@ -51,7 +51,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'work/new',
-    component: NewWorkComponent,
+    component: WorkNewComponent,
     canActivate: [ AuthGuardService ]
   },
   {
@@ -60,7 +60,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'category/new',
-    component: NewCategoryComponent,
+    component: CategoryNewComponent,
     canActivate: [ AuthGuardService ]
   },
   {
@@ -91,8 +91,8 @@ const appRoutes: Routes = [
     LoginViewComponent,
     SettingsComponent,
     ProfileComponent,
-    NewWorkComponent,
-    NewCategoryComponent,
+    WorkNewComponent,
+    CategoryNewComponent,
     CategoryComponent
   ],
   imports: [

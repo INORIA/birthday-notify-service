@@ -9,11 +9,11 @@ import { ICategory, Category } from '../models/category';
 import { FormStates } from '../enums/form-states';
 
 @Component({
-  selector: 'app-new-category',
-  templateUrl: './new-category.component.html',
-  styleUrls: ['./new-category.component.scss']
+  selector: 'app-category-new',
+  templateUrl: './category-new.component.html',
+  styleUrls: ['./category-new.component.scss']
 })
-export class NewCategoryComponent implements OnInit {
+export class CategoryNewComponent implements OnInit {
 
   FormStates = FormStates;
   formState = FormStates.WaitForSubmit;
