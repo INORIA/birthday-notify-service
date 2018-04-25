@@ -1,1 +1,2 @@
-Birthday Notify Service (仮)
+Shiratan (Provisional)
+
