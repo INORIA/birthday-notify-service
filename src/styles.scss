@@ -1,11 +1,12 @@
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 
 @include mat-core();
-@import 'default-theme.scss';
-@import 'default-font-family.scss';
-@import 'src/variables';
+@import "default-theme.scss";
+@import "default-font-family.scss";
+@import "src/variables";
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
   margin: 0;

@@ -16,7 +16,7 @@ describe('Directive: BackImgDirective', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ TestBackgroundComponent, BackImgDirective ]
-    })
+    });
 
     fixture = TestBed.createComponent(TestBackgroundComponent);
     component = fixture.debugElement.componentInstance;

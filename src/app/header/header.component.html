@@ -1,17 +1,25 @@
 <header>
   <div class="menu-bar">
     <div class="logo">
-      <a [routerLink]="['/']"><img src="/assets/images/logo.png" alt=""></a>
+      <a [routerLink]="['/']"><img src="/assets/images/logo.png" alt=""/></a>
     </div>
-    <div class="actions" *ngIf="afAuth.authState | async as user; else showLogin">
+    <div
+      class="actions"
+      *ngIf="(afAuth.authState | async) as user; else showLogin"
+    >
       <button class="button" mat-button [matMenuTriggerFor]="userMenu">
-          <mat-icon class="icon">account_circle</mat-icon>
+        <mat-icon class="icon">account_circle</mat-icon>
       </button>
     </div>
   </div>
 </header>
 
-<mat-menu #userMenu="matMenu" xPosition="before" yPosition="below" [overlapTrigger]=false>
+<mat-menu
+  #userMenu="matMenu"
+  xPosition="before"
+  yPosition="below"
+  [overlapTrigger]="false"
+>
   <button mat-menu-item [routerLink]="['/', 'profile']">
     マイページ
   </button>

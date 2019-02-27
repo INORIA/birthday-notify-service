@@ -1,5 +1,4 @@
 <main>
-
   <section>
     <h2>Personal Settings</h2>
   </section>
@@ -9,10 +8,17 @@
 
     <mat-card class="config-view">
       <mat-form-field class="input-field">
-        <input placeholder="Email" matInput type="text" [(ngModel)]="email">
+        <input placeholder="Email" matInput type="text" [(ngModel)]="email" />
       </mat-form-field>
 
-      <button class="email-register-button" mat-button color="primary" (click)="updateEmail()">登録</button>
+      <button
+        class="email-register-button"
+        mat-button
+        color="primary"
+        (click)="updateEmail()"
+      >
+        登録
+      </button>
     </mat-card>
 
     <h2 class="config-title">プロフィール</h2>
@@ -20,14 +26,25 @@
     <mat-card class="config-view">
       <div class="input-wrapper">
         <mat-form-field class="input-field">
-          <input placeholder="UID" matInput type="text" [(ngModel)]="uid" disabled>
+          <input
+            placeholder="UID"
+            matInput
+            type="text"
+            [(ngModel)]="uid"
+            disabled
+          />
         </mat-form-field>
 
         <mat-form-field class="input-field">
-          <input placeholder="Display Name" matInput type="text" [(ngModel)]="displayName" disabled>
+          <input
+            placeholder="Display Name"
+            matInput
+            type="text"
+            [(ngModel)]="displayName"
+            disabled
+          />
         </mat-form-field>
       </div>
     </mat-card>
   </section>
-
 </main>

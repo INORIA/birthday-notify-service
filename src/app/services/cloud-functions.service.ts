@@ -9,11 +9,7 @@ export enum Functions {
 
 @Injectable()
 export class CloudFunctionsService {
-
-  constructor(
-    private http: HttpClient,
-    private afAuth: AngularFireAuth
-  ) { }
+  constructor(private http: HttpClient, private afAuth: AngularFireAuth) {}
 
   private async requestIdToken() {
     return await this.afAuth.auth.currentUser.getIdToken(true);
@@ -24,7 +20,7 @@ export class CloudFunctionsService {
       const idToken = await this.requestIdToken();
       const httpOptions = {
         headers: new HttpHeaders({
-          'Authorization': `Bearer ${idToken}`
+          Authorization: `Bearer ${idToken}`
         })
       };
       await this.http.post(url, options, httpOptions).toPromise();
@@ -33,5 +29,4 @@ export class CloudFunctionsService {
       throw e;
     }
   }
-
 }

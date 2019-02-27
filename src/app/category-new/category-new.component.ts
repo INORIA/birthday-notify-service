@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from 'angularfire2/storage';
-import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { DocumentReference } from "@firebase/firestore-types";
+import {
+  AngularFirestore,
+  AngularFirestoreDocument
+} from 'angularfire2/firestore';
+import { DocumentReference } from '@firebase/firestore-types';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import { AngularFireAuth } from 'angularfire2/auth';
 
@@ -14,20 +17,18 @@ import { FormStates } from '../enums/form-states';
   styleUrls: ['./category-new.component.scss']
 })
 export class CategoryNewComponent implements OnInit {
-
   FormStates = FormStates;
   formState = FormStates.WaitForSubmit;
   model = new Category();
-  submitPercent: number = 0;
+  submitPercent = 0;
 
   constructor(
     private afs: AngularFirestore,
     private snackBar: MatSnackBar,
     private afAuth: AngularFireAuth
-  ) { }
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   async onSubmit(e) {
     e.preventDefault();
@@ -60,5 +61,4 @@ export class CategoryNewComponent implements OnInit {
     config.duration = 2000;
     this.snackBar.open(message, '', config);
   }
-
 }

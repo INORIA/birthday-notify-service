@@ -14,7 +14,14 @@
           <ul class="main">
             <li class="name">
               <mat-form-field class="input">
-                <input type="text" name="cname" matInput placeholder="カテゴリ名" required [(ngModel)]="model.name">
+                <input
+                  type="text"
+                  name="cname"
+                  matInput
+                  placeholder="カテゴリ名"
+                  required
+                  [(ngModel)]="model.name"
+                />
               </mat-form-field>
             </li>
           </ul>
@@ -24,13 +31,17 @@
               class="register-button"
               mat-raised-button
               color="primary"
-              [disabled]="!(workForm.form.valid && formState === FormStates.WaitForSubmit)"
+              [disabled]="
+                !(workForm.form.valid && formState === FormStates.WaitForSubmit)
+              "
             >
               <mat-spinner
                 diameter="40"
                 class="loader"
                 color="primary"
-                *ngIf="formState === FormStates.Submitting && submitPercent === 0"
+                *ngIf="
+                  formState === FormStates.Submitting && submitPercent === 0
+                "
               ></mat-spinner>
               <mat-progress-spinner
                 diameter="40"
@@ -38,7 +49,10 @@
                 color="primary"
                 mode="determinate"
                 [value]="submitPercent"
-                *ngIf="formState === FormStates.Submitting || formState === FormStates.Submitted"
+                *ngIf="
+                  formState === FormStates.Submitting ||
+                  formState === FormStates.Submitted
+                "
               ></mat-progress-spinner>
               登録
             </button>

@@ -1,4 +1,4 @@
-import { DocumentReference } from "@firebase/firestore-types";
+import { DocumentReference } from '@firebase/firestore-types';
 
 export interface IWork {
   name: string;
@@ -6,10 +6,8 @@ export interface IWork {
 }
 
 export class Work implements IWork {
-
   name = '';
   category = '';
 
-  constructor() {
-  }
+  constructor() {}
 }

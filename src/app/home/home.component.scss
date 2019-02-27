@@ -21,7 +21,7 @@ $horizontal-items: 4;
   box-shadow: inset 0 -10px 10px -10px #888;
 
   &::before {
-    content: '';
+    content: "";
     display: block;
     width: 100%;
     height: 100%;
@@ -55,7 +55,6 @@ $horizontal-items: 4;
   font-size: 1.2rem;
 }
 
-
 .top-section {
   width: 100%;
   max-width: $content-max;
@@ -83,7 +82,7 @@ $horizontal-items: 4;
     width: calc(100% + 20px);
     margin-left: -10px;
     height: 100%;
-    content: '';
+    content: "";
     display: block;
     box-shadow: inset 0 0 10px 4px #888;
   }
@@ -120,9 +119,9 @@ $horizontal-items: 4;
   }
 
   .character-item:hover {
-    box-shadow:#ababab 0px 10px 20px 0px;
-    transform:translatey(-3px);
-    cursor:pointer;
+    box-shadow: #ababab 0px 10px 20px 0px;
+    transform: translatey(-3px);
+    cursor: pointer;
   }
 
   .character-info {
@@ -167,5 +166,4 @@ $horizontal-items: 4;
     display: block;
     padding-left: 2rem;
   }
-
 }

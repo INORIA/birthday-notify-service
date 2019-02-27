@@ -36,11 +36,12 @@
   font-weight: 200;
 }
 
-
 html {
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Original Yu Gothic", "Yu Gothic", YuGothic, Verdana, Meiryo, "M+ 1p", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue",
+    "Original Yu Gothic", "Yu Gothic", YuGothic, Verdana, Meiryo, "M+ 1p",
+    sans-serif;
 }
-@media all and (-ms-high-contrast: none)  {
+@media all and (-ms-high-contrast: none) {
   html {
     font-family: Verdana, Meiryo, sans-serif;
   }

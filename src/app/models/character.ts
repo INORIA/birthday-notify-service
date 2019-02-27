@@ -1,4 +1,4 @@
-import { DocumentReference } from "@firebase/firestore-types";
+import { DocumentReference } from '@firebase/firestore-types';
 
 export interface ICharacter {
   _id?: string;
@@ -22,6 +22,5 @@ export class Character implements ICharacter {
   work;
   accountId;
 
-  constructor() {
-  }
+  constructor() {}
 }

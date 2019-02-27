@@ -9,7 +9,10 @@ describe('CloudFunctionsService', () => {
     });
   });
 
-  it('should be created', inject([CloudFunctionsService], (service: CloudFunctionsService) => {
-    expect(service).toBeTruthy();
-  }));
+  it('should be created', inject(
+    [CloudFunctionsService],
+    (service: CloudFunctionsService) => {
+      expect(service).toBeTruthy();
+    }
+  ));
 });

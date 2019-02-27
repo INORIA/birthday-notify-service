@@ -7,7 +7,7 @@
     <h2 class="head">カテゴリ一覧</h2>
 
     <ul>
-      <li class="item" *ngFor="let category of categories$ | async">
+      <li class="item" *ngFor="let category of (categories$ | async)">
         {{ category.name }}
       </li>
     </ul>

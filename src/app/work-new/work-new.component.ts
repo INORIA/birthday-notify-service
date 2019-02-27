@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { DocumentReference } from "@firebase/firestore-types";
+import { DocumentReference } from '@firebase/firestore-types';
 import { AngularFireStorage } from 'angularfire2/storage';
-import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreDocument
+} from 'angularfire2/firestore';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
-import { Observable } from 'rxjs/Observable';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs-compat/Observable';
 import * as firebase from 'firebase';
 
 import { IWork, Work } from '../models/work';
 import { FormStates } from '../enums/form-states';
 import { ICategory } from '../models/category';
-
 
 @Component({
   selector: 'app-new-work',
@@ -18,11 +21,10 @@ import { ICategory } from '../models/category';
   styleUrls: ['./work-new.component.scss']
 })
 export class WorkNewComponent implements OnInit {
-
   FormStates = FormStates;
   formState = FormStates.WaitForSubmit;
   model = new Work();
-  submitPercent: number = 0;
+  submitPercent = 0;
   categories: Observable<ICategory[]>;
 
   constructor(
@@ -31,18 +33,18 @@ export class WorkNewComponent implements OnInit {
     private afAuth: AngularFireAuth
   ) {
     const categoriesCollection = afs.collection<ICategory>('categories');
-    this.categories = categoriesCollection.snapshotChanges().map(actions => {
-      return actions.map(a => {
-        const data = a.payload.doc.data() as ICategory;
-        const id = a.payload.doc.id;
-        return { id, ...data };
-      });
-    });
+    this.categories = categoriesCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data() as ICategory;
+          const id = a.payload.doc.id;
+          return { /*id, */ ...data };
+        });
+      })
+    );
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   async onSubmit(e) {
     e.preventDefault();
@@ -51,7 +53,9 @@ export class WorkNewComponent implements OnInit {
     try {
       const user = this.afAuth.auth.currentUser;
       await this.postData({
-        categories: [ firebase.firestore().doc(`/categories/${this.model.category}`) ],
+        categories: [
+          firebase.firestore().doc(`/categories/${this.model.category}`)
+        ],
         name: this.model.name
       });
       this.submitPercent = 100;
@@ -76,5 +80,4 @@ export class WorkNewComponent implements OnInit {
     config.duration = 2000;
     this.snackBar.open(message, '', config);
   }
-
 }

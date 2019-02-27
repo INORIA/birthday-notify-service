@@ -17,7 +17,7 @@ import {
   MatInputModule
 } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -47,12 +47,12 @@ const appRoutes: Routes = [
   {
     path: 'new',
     component: NewComponent,
-    canActivate: [ AuthGuardService ]
+    canActivate: [AuthGuardService]
   },
   {
     path: 'work/new',
     component: WorkNewComponent,
-    canActivate: [ AuthGuardService ]
+    canActivate: [AuthGuardService]
   },
   {
     path: 'category',
@@ -61,17 +61,17 @@ const appRoutes: Routes = [
   {
     path: 'category/new',
     component: CategoryNewComponent,
-    canActivate: [ AuthGuardService ]
+    canActivate: [AuthGuardService]
   },
   {
     path: 'settings',
     component: SettingsComponent,
-    canActivate: [ AuthGuardService ]
+    canActivate: [AuthGuardService]
   },
   {
     path: 'profile',
     component: ProfileComponent,
-    canActivate: [ AuthGuardService ]
+    canActivate: [AuthGuardService]
   },
   {
     path: ':id',
@@ -109,10 +109,7 @@ const appRoutes: Routes = [
     MatToolbarModule,
     MatCardModule,
     MatInputModule,
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: false }
-    ),
+    RouterModule.forRoot(appRoutes, { enableTracing: false }),
     FormsModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
@@ -120,8 +117,8 @@ const appRoutes: Routes = [
     MatMenuModule,
     MatSelectModule
   ],
-  providers: [ CloudFunctionsService, AuthGuardService ],
+  providers: [CloudFunctionsService, AuthGuardService],
   bootstrap: [AppComponent],
   entryComponents: [LoginViewComponent]
 })
-export class AppModule { }
+export class AppModule {}

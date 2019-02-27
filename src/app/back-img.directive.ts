@@ -8,6 +8,6 @@ export class BackImgDirective {
     if (image) {
       this.image = `url(${image})`;
     }
-  };
+  }
   @HostBinding('style.backgroundImage') image = '';
 }

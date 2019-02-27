@@ -2,19 +2,25 @@
   <div class="hero-wrapper">
     <div class="head-message">
       <h1 class="mat-display-1 headline">Birthday Notifier</h1>
-      <h2 class="subheading-2 subheading">君は生涯よくこの授業院というののためを思うたです。いくら今日を中止ようも至極この相違ででだけをなってみるなにも</h2>
+      <h2 class="subheading-2 subheading">
+        君は生涯よくこの授業院というののためを思うたです。いくら今日を中止ようも至極この相違ででだけをなってみるなにも
+      </h2>
     </div>
   </div>
 </section>
 
 <section class="top-section">
-
   <ng-container>
-    <ng-container *ngIf="birthToday$ | async as characters">
+    <ng-container *ngIf="(birthToday$ | async) as characters">
       <ng-container *ngIf="characters.length">
         <h2 class="head">今日が誕生日！！！</h2>
         <div class="character-list">
-          <mat-card class="character-item" *ngFor="let character of characters" [appBackImg]="character.image" [routerLink]="['/', character.id]">
+          <mat-card
+            class="character-item"
+            *ngFor="let character of characters"
+            [appBackImg]="character.image"
+            [routerLink]="['/', character.id]"
+          >
             <div class="character-info">
               <span class="character-name">{{ character.name }}</span>
             </div>
@@ -25,9 +31,14 @@
   </ng-container>
 
   <h2 class="head">今月が誕生日！</h2>
-  <div class="character-list" *ngIf="birthThisMonth$ | async as characters">
+  <div class="character-list" *ngIf="(birthThisMonth$ | async) as characters">
     <ng-container *ngIf="characters.length; else noThisMonth">
-      <mat-card class="character-item" *ngFor="let character of characters" [appBackImg]="character.image" [routerLink]="['/', character.id]">
+      <mat-card
+        class="character-item"
+        *ngFor="let character of characters"
+        [appBackImg]="character.image"
+        [routerLink]="['/', character.id]"
+      >
         <div class="character-info">
           <span class="character-name">{{ character.name }}</span>
         </div>
@@ -38,10 +49,14 @@
     今月が誕生日の子はいないようです
   </ng-template>
 
-
   <h2 class="head">キャラクターリスト</h2>
   <div class="character-list">
-    <mat-card class="character-item" *ngFor="let character of characters$ | async" [appBackImg]="character.image" [routerLink]="['/', character.id]">
+    <mat-card
+      class="character-item"
+      *ngFor="let character of (characters$ | async)"
+      [appBackImg]="character.image"
+      [routerLink]="['/', character.id]"
+    >
       <div class="character-info">
         <span class="character-name">{{ character.name }}</span>
       </div>
@@ -55,8 +70,8 @@
   <h2 class="head">NEWS</h2>
 
   <ul class="news-list">
-    <li class="item" *ngFor="let new of news$ | async">
-      <span class="date">{{ new.date | date:'yyyy-MM-dd' }}</span>
+    <li class="item" *ngFor="let new of (news$ | async)">
+      <span class="date">{{ new.date | date: "yyyy-MM-dd" }}</span>
       <span class="title">{{ new.title }}</span>
       <span class="body" *ngIf="new.body">{{ new.body }}</span>
     </li>

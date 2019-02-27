@@ -22,7 +22,7 @@ main {
   overflow: hidden;
 
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -43,11 +43,9 @@ main {
   z-index: 1;
 }
 
-
 .work-info {
   margin-top: 20px;
 }
-
 
 .work {
   top: 40%;
@@ -81,7 +79,7 @@ main {
     align-items: center;
 
     &.preview {
-      transition: .4s;
+      transition: 0.4s;
       opacity: 0;
 
       &:hover {
@@ -173,7 +171,6 @@ main {
   }
 }
 
-
 // override material input styles
 
 ::ng-deep .default-theme {
@@ -181,7 +178,10 @@ main {
     background-color: rgba(255, 255, 255, 0.7);
   }
 
-  .mat-input-placeholder, .mat-select-value, .mat-select-placeholder, .mat-select-arrow {
-    color:  rgba(255, 255, 255, 0.7);
+  .mat-input-placeholder,
+  .mat-select-value,
+  .mat-select-placeholder,
+  .mat-select-arrow {
+    color: rgba(255, 255, 255, 0.7);
   }
 }

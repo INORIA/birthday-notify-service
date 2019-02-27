@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs-compat/Observable';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection
+} from 'angularfire2/firestore';
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
 
@@ -10,7 +14,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
   private characterCollection: AngularFirestoreCollection<any>;
   characters$: Observable<any[]>;
   birthToday$: Observable<any[]>;
@@ -23,40 +26,56 @@ export class HomeComponent implements OnInit {
     const thisMonth = '' + (date.getMonth() + 1);
 
     this.characterCollection = db.collection('characters');
-    this.characters$ = this.characterCollection.snapshotChanges().map(actions => {
-      return actions.map(a => {
-        const data = a.payload.doc.data();
-        const _id = a.payload.doc.id;
-        return { _id, ...data };
-      });
-    });;
-
-    this.birthThisMonth$ = this.db.collection('characters', ref => ref.where('birthday_month', '==', thisMonth))
-      .snapshotChanges().map(actions => {
+    this.characters$ = this.characterCollection.snapshotChanges().pipe(
+      map(actions => {
         return actions.map(a => {
           const data = a.payload.doc.data();
           const _id = a.payload.doc.id;
           return { _id, ...data };
         });
-      });
+      })
+    );
 
-    this.birthToday$ = this.db.collection('characters', ref => ref.where('birthday_month', '==', thisMonth).where('birthday_date', '==', thisDate))
-      .snapshotChanges().map(actions => {
-        return actions.map(a => {
-          const data = a.payload.doc.data();
-          const _id = a.payload.doc.id;
-          return { _id, ...data };
-        });
-      });
+    this.birthThisMonth$ = this.db
+      .collection('characters', ref =>
+        ref.where('birthday_month', '==', thisMonth)
+      )
+      .snapshotChanges()
+      .pipe(
+        map(actions => {
+          return actions.map(a => {
+            const data = a.payload.doc.data();
+            const _id = a.payload.doc.id;
+            return { _id, ...data };
+          });
+        })
+      );
 
-    this.news$ = this.db.collection('news', ref => ref.orderBy('date', 'desc')).valueChanges();
-   }
+    this.birthToday$ = this.db
+      .collection('characters', ref =>
+        ref
+          .where('birthday_month', '==', thisMonth)
+          .where('birthday_date', '==', thisDate)
+      )
+      .snapshotChanges()
+      .pipe(
+        map(actions => {
+          return actions.map(a => {
+            const data = a.payload.doc.data();
+            const _id = a.payload.doc.id;
+            return { _id, ...data };
+          });
+        })
+      );
 
-  ngOnInit() {
+    this.news$ = this.db
+      .collection('news', ref => ref.orderBy('date', 'desc'))
+      .valueChanges();
   }
+
+  ngOnInit() {}
 
   log(val) {
     console.log(val);
   }
-
 }

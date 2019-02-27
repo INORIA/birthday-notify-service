@@ -6,7 +6,7 @@ $default-theme-warn: mat-palette($mat-deep-orange, A700);
 
 // create theme (use mat-dark-theme for themes with dark backgrounds)
 $default-theme: mat-light-theme(
-    $default-theme-primary,
-    $default-theme-accent,
-    $default-theme-warn
+  $default-theme-primary,
+  $default-theme-accent,
+  $default-theme-warn
 );

@@ -12,36 +12,40 @@ import { HeaderComponent } from '../header/header.component';
   styleUrls: ['./login-view.component.scss']
 })
 export class LoginViewComponent implements OnInit {
-
   constructor(
     private snackBar: MatSnackBar,
     public afAuth: AngularFireAuth,
     private dialogRef: MatDialogRef<HeaderComponent>
-  ) { }
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   loginWithGoogle(event) {
     event.preventDefault();
 
-    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(() => {
-      this.dialogRef.close();
-      this.displayMessage();
-    }).catch(e => {
-      this.displayError();
-    });
+    this.afAuth.auth
+      .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+      .then(() => {
+        this.dialogRef.close();
+        this.displayMessage();
+      })
+      .catch(e => {
+        this.displayError();
+      });
   }
 
   loginWithTwitter(event) {
     event.preventDefault();
 
-    this.afAuth.auth.signInWithPopup(new firebase.auth.TwitterAuthProvider()).then(() => {
-      this.dialogRef.close();
-      this.displayMessage();
-    }).catch(e => {
-      this.displayError();
-    });
+    this.afAuth.auth
+      .signInWithPopup(new firebase.auth.TwitterAuthProvider())
+      .then(() => {
+        this.dialogRef.close();
+        this.displayMessage();
+      })
+      .catch(e => {
+        this.displayError();
+      });
   }
 
   private displayError(message = 'ログインできませんでした') {
@@ -52,8 +56,7 @@ export class LoginViewComponent implements OnInit {
 
   private displayMessage(message = 'ログインしました') {
     this.snackBar.open(message, '', {
-      duration: 2000,
+      duration: 2000
     });
   }
-
 }
